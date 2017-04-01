@@ -17,5 +17,18 @@
   },
   "dependencies": {
     "express": "^4.15.2"
+  },
+  "eslintConfig": {
+    "parserOptions": {
+      "ecmaVersion": 6
+    },
+    "rules": {
+      "valid-typeof": "error",
+      "no-undef": "error"
+    },
+    "env": {
+      "browser": true,
+      "node": true
+    }
   }
 }
