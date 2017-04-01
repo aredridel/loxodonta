@@ -1,0 +1,15 @@
+{
+  "name": "loxodonta",
+  "version": "1.0.0",
+  "description": "An implementation of the Mastodon/GNU Social protocols",
+  "keywords": [
+    "mastodon",
+    "gnu social"
+  ],
+  "main": "index.js",
+  "scripts": {
+    "test": "tap test/*"
+  },
+  "author": "Aria Stewart <aredridel@dinhe.net>",
+  "license": "ISC"
+}
