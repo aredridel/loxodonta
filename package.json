@@ -11,5 +11,11 @@
     "test": "tap test/*"
   },
   "author": "Aria Stewart <aredridel@dinhe.net>",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "tap": "^10.3.1"
+  },
+  "dependencies": {
+    "express": "^4.15.2"
+  }
 }
