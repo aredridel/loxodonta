@@ -4,18 +4,6 @@ const date = {
     }
 };
 
-const author = {
-    tag: 'author',
-    fields: {
-        name: {},
-        uri: {},
-        email: {}
-    },
-    map: {
-        to: 'name'
-    }
-};
-
 const link = {
     tag: 'link',
     attributes: {
@@ -25,6 +13,19 @@ const link = {
     },
     map: {
         to: 'href'
+    }
+};
+
+const author = {
+    tag: 'author',
+    fields: {
+        name: {},
+        uri: {},
+        email: {},
+        links: link
+    },
+    map: {
+        to: 'name'
     }
 };
 
@@ -53,7 +54,13 @@ const feed = {
     attributes: {
         xmlns: {
             default: "http://www.w3.org/2005/Atom"
-        }
+        },
+        "xmlns:thr": {},
+        "xmlns:activity": {},
+        "xmlns:poco": {},
+        "xmlns:media": {},
+        "xmlns:ostatus": {},
+        "xmlns:mastodon": {}
     },
     fields: {
         title: {},
