@@ -30,7 +30,6 @@ app.get('/.well-known/host-meta', (req, res, next) => {
 app.get('/.well-known/webfinger', (req, res, next) => {
 	const resource = url.parse(req.query.resource);
 	const RESOURCE = resource.auth + '@' + resource.host;
-	console.warn('Request for', RESOURCE);
 	
 	res.setHeader('Content-Type', 'application/xrd+xml; charset=UTF-8');
 	res.end(xrdSchema.generate({
