@@ -22,6 +22,7 @@
     "levelgraph": "^2.0.1",
     "levelup": "^1.3.5",
     "magic-signatures": "^1.0.0-2",
+    "make-fetch-happen": "^2.2.1",
     "xml-schema": "^2.2.0"
   },
   "eslintConfig": {
