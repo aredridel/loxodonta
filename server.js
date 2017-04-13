@@ -2,9 +2,9 @@ const express = require('express');
 
 const app = express();
 
-const db = require('./db');
-
 const config = require('./config');
+
+const db = require('./db')({config});
 
 app.use((req, res, next) => {
 	console.log(req.method, req.originalUrl);

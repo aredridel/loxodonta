@@ -1,5 +1,6 @@
 const HOST = process.env.HOST || 'test.yayforqueers.net';
 
 module.exports = {
-    HOST
+    HOST,
+    db: 'db'
 }
