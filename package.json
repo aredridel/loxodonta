@@ -34,6 +34,7 @@
     },
     "rules": {
       "valid-typeof": "error",
+      "no-unused-vars": "error",
       "no-undef": "error"
     },
     "env": {
