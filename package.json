@@ -26,6 +26,7 @@
     "magic-signatures": "^1.0.0-4",
     "make-fetch-happen": "^2.2.1",
     "promise": "^7.1.1",
+    "replify": "^1.2.0",
     "xml-schema": "^2.2.0"
   },
   "eslintConfig": {

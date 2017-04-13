@@ -1,4 +1,5 @@
 const express = require('express');
+const replify = require('replify');
 
 const app = express();
 
@@ -12,6 +13,8 @@ app.use((req, res, next) => {
 })
 
 const ctx = { app, config, db };
+
+replify({ name: 'loxodonta', path: '/tmp/repl' }, null, ctx);
 
 require('./handlers/host-meta')(ctx);
 require('./handlers/webfinger')(ctx);
