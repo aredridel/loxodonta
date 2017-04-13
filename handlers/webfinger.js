@@ -4,8 +4,8 @@ const XMLSchema = require('xml-schema');
 
 const xrdSchema = new XMLSchema(xrd.xrd);
 
-module.exports = function (ctx) {
-    ctx.app.get('/.well-known/webfinger', (req, res) => {
+module.exports = function ({app}) {
+    app.get('/.well-known/webfinger', (req, res) => {
         const resource = url.parse(req.query.resource);
         //const RESOURCE = resource.auth + '@' + resource.host;
 
