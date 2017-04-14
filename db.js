@@ -4,17 +4,23 @@ const levelup = require('levelup');
 const path = require('path');
 const promisifyLevelGraph = require('./promisify-levelgraph');
 const sublevel = require('level-sublevel');
-
+const levelPromise = require('level-promise');
 
 module.exports = function({config}) {
-    const base = sublevel(levelup(path.resolve(__dirname, config.db || 'db'), { db: leveldown }, err => {
+    const db = levelPromise(sublevel(levelup(path.resolve(__dirname, config.db || 'db'), { db: leveldown }, err => {
         if (err) {
             console.warn(`Database error: ${err.stack || err}`);
             process.exit(1);
         }
-    }));
+    })));
 
-    const db = promisifyLevelGraph(levelgraph(base.sublevel('graph')));
+    const accounts = levelPromise(db.sublevel('accounts', {
+        valueEncoding: 'json'
+    }))
 
-    return db;
+    return {
+        graph: promisifyLevelGraph(levelgraph(db.sublevel('graph'))),
+        db,
+        accounts
+    }
 }

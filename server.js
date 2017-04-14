@@ -1,23 +1,44 @@
 const express = require('express');
 const replify = require('replify');
+const ifP = require('if-p');
 
-const app = express();
+const server = express();
 
 const config = require('./config');
 
 const db = require('./db')({config});
 
-app.use((req, res, next) => {
+server.use((req, res, next) => {
 	console.log(req.method, req.originalUrl);
 	next();
 })
 
-const ctx = { app, config, db };
+class App {
+	constructor(opts) {
+		Object.assign(this, opts);
+	}
 
-replify({ name: 'loxodonta', path: '/tmp/repl' }, null, ctx);
+	addAccount({username, password}) {
+		const existing = NotFoundAsNull(this.db.accounts.get(username))
+		return ifP(existing,
+			() => { throw new Error("user already exists") },
+			() => this.db.accounts.put(username, {username, password}));
+	}
+}
+
+const ctx = { server, config, db };
+const app = new App({ server, config, db });
+
+replify({ name: 'loxodonta', path: '/tmp/repl' }, app, ctx);
 
 require('./handlers/host-meta')(ctx);
 require('./handlers/webfinger')(ctx);
 require('./handlers/atom')(ctx);
 
-app.listen(process.env.PORT || 8014);
+server.listen(process.env.PORT || 8014);
+
+function NotFoundAsNull(e) {
+	return Promise.resolve(e).catch(e => {
+		if (e.name != 'NotFoundError') throw e;
+	})
+}

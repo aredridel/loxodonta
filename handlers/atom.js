@@ -3,8 +3,8 @@ const XMLSchema = require('xml-schema');
 
 const atomSchema = new XMLSchema(atom.feed);
 
-module.exports = function ({app, config}) {
-    app.get('/users/:user.atom', (req, res) => {
+module.exports = function ({server, config}) {
+    server.get('/users/:user.atom', (req, res) => {
         res.setHeader('Content-Type', 'application/atom+xml; charset=utf-8');
         res.end(atomSchema.generate({
             "xmlns:thr": "http://purl.org/syndication/thread/1.0",

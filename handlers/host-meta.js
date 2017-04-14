@@ -2,8 +2,8 @@ const xrd = require('../xrd-schema');
 const XMLSchema = require('xml-schema');
 const xrdSchema = new XMLSchema(xrd.xrd);
 
-module.exports = function ({app, config}) {
-    app.get('/.well-known/host-meta', (req, res) => {
+module.exports = function ({server, config}) {
+    server.get('/.well-known/host-meta', (req, res) => {
         res.setHeader('Content-Type', 'application/xrd+xml; charset=UTF-8');
         res.end(xrdSchema.generate({
         "xmlns:hm": "http://host-meta.net/xrd/1.0",
