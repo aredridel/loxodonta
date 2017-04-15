@@ -26,7 +26,7 @@ module.exports = function ({server, config, db}) {
                     { rel: "hub", href: `https://pubsubhubbub.appspot.com/` },
                     { rel: "salmon", href: `https://${config.HOST}/api/salmon/${user.username}` },
                 ],
-                //<logo>https://files.mastodon.social/accounts/avatars/000/019/483/original/media.png?1483649818</logo>
+                logo: "https://files.mastodon.social/accounts/avatars/000/019/483/original/media.png?1483649818",
                 author: {
                     id: `https://${config.HOST}/users/${user.username}`,
                     "activity:object-type": "http://activitystrea.ms/schema/1.0/person",
