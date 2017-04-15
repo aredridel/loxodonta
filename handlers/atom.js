@@ -23,8 +23,8 @@ module.exports = function ({server, config, db}) {
                 links: [
                     { rel: "alternate", type: "text/html", href: `https://${config.HOST}/@${user.username}` },
                     { rel: "self", type: "application/atom+xml", href: `https://${config.HOST}/users/${user.username}.atom` },
-                    { rel: "hub", href: `https://${config.HOST}/api/push` },
-                    { rel: "salmon", href: `https://${config.HOST}/api/salmon/19483` },
+                    { rel: "hub", href: `https://pubsubhubbub.appspot.com/` },
+                    { rel: "salmon", href: `https://${config.HOST}/api/salmon/${user.username}` },
                 ],
                 //<logo>https://files.mastodon.social/accounts/avatars/000/019/483/original/media.png?1483649818</logo>
                 author: {
