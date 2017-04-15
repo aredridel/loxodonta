@@ -4,7 +4,15 @@ function promiseHandler(handler) {
     return function (req, res, next) {
         const response = handler(req, res, next);
 
-        const responded = response.catch(err => {
+        const responded = response.then(content => {
+            if (!res.finished) {
+                if (typeof content == 'string' || Buffer.isBuffer(content)) {
+                    res.end(content);
+                } else {
+                    throw new Error("Unfinished response");
+                }
+            } 
+        }).catch(err => {
             if (err.name != 'NotFoundError') throw err;
             res.statusCode = 404;
             res.end("Not Found");

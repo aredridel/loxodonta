@@ -8,10 +8,9 @@ module.exports = function ({server, config, db}) {
     server.get('/users/:user.atom', promiseHandler((req, res) => {
         const user = db.accounts.get(req.params.user)
 
-        const responded = user.then(user => {
-            console.warn(user, config, req.params);
+        return user.then(user => {
             res.setHeader('Content-Type', 'application/atom+xml; charset=utf-8');
-            res.end(atomSchema.generate({
+            return atomSchema.generate({
                 "xmlns:thr": "http://purl.org/syndication/thread/1.0",
                 "xmlns:activity": "http://activitystrea.ms/spec/1.0/",
                 "xmlns:poco": "http://portablecontacts.net/spec/1.0",
@@ -44,10 +43,7 @@ module.exports = function ({server, config, db}) {
                     "mastodon:scope": "public"
                 },
                 entries: []
-            }));
+            });
         });
-
-        return responded;
-
     }));
 };
