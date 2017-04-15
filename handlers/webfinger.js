@@ -1,11 +1,12 @@
 const url = require('url');
 const xrd = require('../xrd-schema');
 const XMLSchema = require('xml-schema');
+const promiseHandler = require('../bits/promise-handler');
 
 const xrdSchema = new XMLSchema(xrd.xrd);
 
 module.exports = function ({server, db}) {
-    server.get('/.well-known/webfinger', (req, res) => {
+    server.get('/.well-known/webfinger', promiseHandler((req, res) => {
         const resource = url.parse(req.query.resource);
 
         const user = db.accounts.get(resource.auth)
@@ -23,20 +24,9 @@ module.exports = function ({server, db}) {
                 { rel: "http://ostatus.org/schema/1.0/subscribe", template: `https://${resource.host}/authorize_follow?acct={uri}` }
                 ]
             }));
-        }, err => {
-            if (err.name == 'NotFoundError') {
-                res.statusCode = 404;
-                res.end("Not Found");
-            } else {
-                throw err;
-            }
-        }).catch(err => {
-            console.warn(err.stack || err);
-            res.statusCode = 500;
-            res.end('Error');
         });
 
         return responded;
-    });
+    }));
 
 };

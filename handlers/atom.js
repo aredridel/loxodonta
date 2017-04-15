@@ -1,10 +1,11 @@
 const atom = require('../atom-schema');
 const XMLSchema = require('xml-schema');
+const promiseHandler = require('../bits/promise-handler');
 
 const atomSchema = new XMLSchema(atom.feed);
 
 module.exports = function ({server, config, db}) {
-    server.get('/users/:user.atom', (req, res) => {
+    server.get('/users/:user.atom', promiseHandler((req, res) => {
         const user = db.accounts.get(req.params.user)
 
         const responded = user.then(user => {
@@ -44,20 +45,9 @@ module.exports = function ({server, config, db}) {
                 },
                 entries: []
             }));
-        }, err => {
-            if (err.name == 'NotFoundError') {
-                res.statusCode = 404;
-                res.end("Not Found");
-            } else {
-                throw err;
-            }
-        }).catch(err => {
-            console.warn(err.stack || err);
-            res.statusCode = 500;
-            res.end('Error');
         });
 
         return responded;
 
-    });
+    }));
 };
