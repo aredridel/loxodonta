@@ -14,13 +14,20 @@ module.exports = function({config}) {
         }
     })));
 
-    const accounts = levelPromise(db.sublevel('accounts', {
-        valueEncoding: 'json'
-    }))
+    const accounts = levelPromise(db.sublevel('accounts', { valueEncoding: 'json' }))
+    const posts = levelPromise(db.sublevel('posts', { valueEncoding: 'json' }));
+    const postsByAuthor = levelPromise(db.sublevel('postsByAuthor', { valueEncoding: 'json' }));
+    const timelines = Object.assign(levelPromise(db.sublevel('timelines', { valueEncoding: 'json' })), {
+      forUser(user) {
+        return levelPromise(timelines.sublevel(user, { valueEncoding: 'json' }))
+      }
+    })
 
     return {
         graph: promisifyLevelGraph(levelgraph(db.sublevel('graph'))),
         db,
+        posts,
+        timelines,
         accounts
     }
 }
