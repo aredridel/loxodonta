@@ -34,7 +34,7 @@ module.exports = function ({server, config, db}) {
                     name: user.username,
                     email: `${user.username}@${config.HOST}`,
                     links: [
-                        { rel: "alternate", type: "text/html", href: `https://${config.host}/@${user.username}` },
+                        { rel: "alternate", type: "text/html", href: `https://${config.HOST}/@${user.username}` },
                         { rel: "avatar", type: "image/png", "media:width": "120",  "media:height": "120", "href": "https://files.mastodon.social/accounts/avatars/000/019/483/original/media.png?1483649818" },
                         { rel: "header", type: "", "media:width": "700", "media:height": "335", "href": "/headers/original/missing.png" }
                     ],
