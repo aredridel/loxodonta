@@ -1,14 +1,21 @@
 const atom = require('../atom-schema');
 const XMLSchema = require('xml-schema');
 const promiseHandler = require('../bits/promise-handler');
+const collect = require('stream-collector-p');
+const pmap = require('map-p');
 
 const atomSchema = new XMLSchema(atom.feed);
 
 module.exports = function ({server, config, db}) {
     server.get('/users/:user.atom', promiseHandler((req, res) => {
         const user = db.accounts.get(req.params.user)
+        const entryIDs = user.then(user => collect(db.timelines.forUser(user.username).createValueStream({reverse: true, limit: 100})));
+        const entries = entryIDs.then(ids => pmap(ids, e => db.posts.get(e).catch(err => {
+                if (err.name != 'NotFoundError') throw err;
+            })))
 
-        return user.then(user => {
+        return Promise.all([user, entries]).then(([user, entries]) => {
+            console.warn(entries);
             res.setHeader('Content-Type', 'application/atom+xml; charset=utf-8');
             return atomSchema.generate({
                 "xmlns:thr": "http://purl.org/syndication/thread/1.0",
@@ -42,7 +49,7 @@ module.exports = function ({server, config, db}) {
                     "poco:displayName": "WIP",
                     "mastodon:scope": "public"
                 },
-                entries: []
+                entries
             });
         });
     }));
