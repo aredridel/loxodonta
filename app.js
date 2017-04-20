@@ -16,20 +16,20 @@ module.exports = class App {
 	}
 
 	post(post) {
-  	post.localid = flake.gen();
-    this.db.posts.put(post.localid, post);
-    // Add to user's posts.
-    this.db.postsByAuthor.put(post.localid, post.localid);
-    this.db.timelines.forUser(post.author).put(post.localid, post.localid);
+		post.localid = flake.gen();
+		this.db.posts.put(post.localid, post);
+		// Add to user's posts.
+		this.db.postsByAuthor.put(post.localid, post.localid);
+		this.db.timelines.forUser(post.author).put(post.localid, post.localid);
 
-    // Fan out
-    // for each follower,
-    //    this.db.timelines.forUser(follower).put(post.localid, post.localid);
+		// Fan out
+		// for each follower,
+		//    this.db.timelines.forUser(follower).put(post.localid, post.localid);
 
-    // distribute status to local timelines
-    // notify about mentions (salmon)
-    // Notify about reblog if it's a reblog (salmon)
-    // Notify about new post (PuSH)
+		// distribute status to local timelines
+		// notify about mentions (salmon)
+		// Notify about reblog if it's a reblog (salmon)
+		// Notify about new post (PuSH)
 	}
 }
 
