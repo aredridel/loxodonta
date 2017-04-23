@@ -1,5 +1,6 @@
 const ifP = require('if-p');
 const FlakeGen = require('flakeid');
+const pubsubhubbub = require('./bits/pubsubhubbub');
 
 const flake = new FlakeGen();
 
@@ -30,6 +31,10 @@ module.exports = class App {
 		// notify about mentions (salmon)
 		// Notify about reblog if it's a reblog (salmon)
 		// Notify about new post (PuSH)
+		pubsubhubbub.publish('https://pubsubhubbub.appspot.com/', [
+			`https://${this.config.HOST}/users/${post.author}/updates/${post.localid}.atom`
+		]).then(console.log, console.warn);
+		
 	}
 }
 
