@@ -59,7 +59,7 @@ function as2feed2atom(as2, config) {
 function as2entry2atom(e, config) {
     console.warn(e);
     const entry = new ltx.Element('entry')
-        .c('id').t(e.id).up()
+        .c('id').t(`https://${config.host}/users/${e.actor.id}/updates/${e.id}`).up()
         .c('published').t(ts(new Date())).up()
         .c('updated').t(ts(new Date())).up()
         .c('title').t('New status by test').up()
