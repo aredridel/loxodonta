@@ -24,26 +24,17 @@ function xmlnsify(el) {
 
 function as2feed2atom(as2, config) {
     const el = new ltx.Element('feed')
-        .c('id').t("WIP").up()
+        .c('id').t("WIP2").up()
         .c('updated').t(as2.updated).up()
         .c('link', { rel: "alternate", type: "text/html", href: `https://${config.host}/@${as2.actor.id}` }).up()
         .c('link', { rel: "self", type: "application/atom+xml", href: `https://${config.host}/users/${as2.actor.id}.atom` }).up()
         .c('link', { rel: "hub", href: `https://pubsubhubbub.appspot.com/` }).up()
         .c('link', { rel: "salmon", href: `https://${config.host}/api/salmon/${as2.actor.id}` }).up()
         .c('logo').t("https://files.mastodon.social/accounts/avatars/000/019/483/original/media.png?1483649818").up()
-        .c('author')
-            .c('id').t(`https://${config.host}/users/${as2.actor.id}`).up()
-            .c("activity:object-type").t("http://activitystrea.ms/schema/1.0/person").up()
-            .c('uri').t(`https://${config.host}/users/${as2.actor.id}`).up()
-            .c('name').t(as2.actor.id).up()
-            .c('email').t(`${as2.actor.id}@${config.host}`).up()
-            .c('link', { rel: "alternate", type: "text/html", href: `https://${config.host}/@${as2.actor.id}` }).up()
-            .c('link', { rel: "avatar", type: "image/png", "media:width": "120",  "media:height": "120", "href": "https://files.mastodon.social/accounts/avatars/000/019/483/original/media.png?1483649818" }).up()
-            .c('link', { rel: "header", type: "", "media:width": "700", "media:height": "335", "href": "/headers/original/missing.png" }).up()
-            .c("poco:preferredUsername").t(as2.actor.id).up()
-            .c("poco:displayName").t("WIP").up()
-            .c("mastodon:scope").t("public").up()
-        .up()
+
+    if (config.standalone || config.standalone == null) {
+        addAuthor(el, as2.actor, config);
+    }
 
     as2.items.forEach(e => {
         const entry = as2entry2atom(e, Object.assign({ standalone: false }, config));
@@ -57,7 +48,6 @@ function as2feed2atom(as2, config) {
 }
 
 function as2entry2atom(e, config) {
-    console.warn(e);
     const entry = new ltx.Element('entry')
         .c('id').t(`https://${config.host}/users/${e.actor.id}/updates/${e.id}`).up()
         .c('published').t(ts(new Date())).up()
@@ -76,8 +66,27 @@ function as2entry2atom(e, config) {
         .c('link', { rel: "alternate", type: "text/html", href: `https://${config.host}/users/${e.actor.id}/updates/${e.id}` }).up()
         .c('link', { rel: "self", type: "application/atom+xml", href: `https://${config.host}/users/${e.actor.id}/updates/${e.id}.atom` }).up()
 
-    if (config.standalone || config.standalone == null) xmlnsify(entry.root());
+    if (config.standalone || config.standalone == null) {
+        addAuthor(entry, e.actor, config);
+        xmlnsify(entry.root());
+    }
 
     return entry.root();
 }
 
+
+function addAuthor(el, actor, config) {
+    el.c('author')
+        .c('id').t(`https://${config.host}/users/${actor.id}`).up()
+        .c("activity:object-type").t("http://activitystrea.ms/schema/1.0/person").up()
+        .c('uri').t(`https://${config.host}/users/${actor.id}`).up()
+        .c('name').t(actor.id).up()
+        .c('email').t(`${actor.id}@${config.host}`).up()
+        .c('link', { rel: "alternate", type: "text/html", href: `https://${config.host}/@${actor.id}` }).up()
+        .c('link', { rel: "avatar", type: "image/png", "media:width": "120",  "media:height": "120", "href": "https://files.mastodon.social/accounts/avatars/000/019/483/original/media.png?1483649818" }).up()
+        .c('link', { rel: "header", type: "", "media:width": "700", "media:height": "335", "href": "/headers/original/missing.png" }).up()
+        .c("poco:preferredUsername").t(actor.id).up()
+        .c("poco:displayName").t("WIP2").up()
+        .c("mastodon:scope").t("public").up()
+    .up()
+}

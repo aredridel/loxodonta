@@ -2,7 +2,7 @@ const collect = require('stream-collector-p');
 const pmap = require('map-p');
 const promiseHandler = require('../bits/promise-handler');
 const ts = require('internet-timestamp');
-const { as2feed2atom } = require('../bits/as2');
+const { as2feed2atom, as2entry2atom } = require('../bits/as2');
 
 module.exports = function ({server, config, db}) {
     server.get('/users/:user.atom', promiseHandler((req, res) => {
@@ -14,13 +14,7 @@ module.exports = function ({server, config, db}) {
 
         return Promise.all([user, entries]).then(([user, entries]) => {
             const actor = toActor(user.username);
-            
-            function toActor(username) {
-                return {
-                    objectType: 'person',
-                    id: username
-                };
-            }
+
             const as2 = {
                 updated: ts(new Date()),
                 actor,
@@ -34,7 +28,42 @@ module.exports = function ({server, config, db}) {
                 }))
             }
             res.setHeader('Content-Type', 'application/atom+xml; charset=utf-8');
+            res.setHeader('Cache-Control', 'max-age=0, private, must-revalidate');
             return as2feed2atom(as2, { host: config.HOST }).toString();
         });
     }));
+
+    server.get('/users/:user/updates/:id.atom', promiseHandler((req, res) => {
+        const user = db.accounts.get(req.params.user);
+
+		const entry = Promise.all([db.posts.get(req.params.id), user]).then(([post, user]) => {
+			if (post.author != user.username) throw new Error(`post-user mismatch: ${post.author} ${user.username}`);
+			return post;
+		});
+
+		const as2 = Promise.all([entry, user]).then(([post, user]) => {
+            return {
+                id: post.localid,
+                updated: ts(new Date()),
+                published: ts(new Date()),
+                title: post.title,
+                content: post.content,
+                actor: toActor(post.author) || toActor(user.username)
+            };
+		});
+
+        return as2.then(as2 => {
+            res.setHeader('Content-Type', 'application/atom+xml; charset=utf-8');
+            res.setHeader('Cache-Control', 'max-age=0, private, must-revalidate');
+            return as2entry2atom(as2, { host: config.HOST }).toString();
+        });
+		
+	}));
 };
+
+function toActor(username) {
+    return {
+        objectType: 'person',
+        id: username
+    };
+}
