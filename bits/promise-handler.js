@@ -2,7 +2,7 @@ module.exports = promiseHandler;
 
 function promiseHandler(handler) {
     return function (req, res, next) {
-        const response = handler(req, res, next);
+        const response = Promise.resolve(handler(req, res, next));
 
         const responded = response.then(content => {
             if (!res.finished) {
