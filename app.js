@@ -33,7 +33,7 @@ module.exports = class App {
 		// Notify about new post (PuSH)
 		pubsubhubbub.publish('https://pubsubhubbub.appspot.com/', [
 			`https://${this.config.HOST}/users/${post.author}/updates/${post.localid}.atom`
-		]).then(console.log, console.warn);
+		]).then(() => console.log("Notifying succeeded"), e => console.warn(`Notifying failed: ${e}`))
 		
 	}
 }
