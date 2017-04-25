@@ -23,12 +23,15 @@ function xmlnsify(el) {
 }
 
 function as2feed2atom(as2, config) {
+    validate(config);
     const el = new ltx.Element('feed')
-        .c('id').t("WIP2").up()
+        .c('id').t(`https://${config.host}/users/${as2.actor.id}.atom`).up()
+        .c('title').t(as2.title).up()
+        .c('subtitle').t(as2.subtitle).up()
         .c('updated').t(as2.updated).up()
         .c('link', { rel: "alternate", type: "text/html", href: `https://${config.host}/@${as2.actor.id}` }).up()
         .c('link', { rel: "self", type: "application/atom+xml", href: `https://${config.host}/users/${as2.actor.id}.atom` }).up()
-        .c('link', { rel: "hub", href: `https://pubsubhubbub.appspot.com/` }).up()
+        .c('link', { rel: "hub", href: config.hub }).up()
         .c('link', { rel: "salmon", href: `https://${config.host}/api/salmon/${as2.actor.id}` }).up()
         .c('logo').t("https://files.mastodon.social/accounts/avatars/000/019/483/original/media.png?1483649818").up()
 
@@ -48,6 +51,7 @@ function as2feed2atom(as2, config) {
 }
 
 function as2entry2atom(e, config) {
+    validate(config);
     const entry = new ltx.Element('entry')
         .c('id').t(`https://${config.host}/users/${e.actor.id}/updates/${e.id}`).up()
         .c('published').t(ts(new Date())).up()
@@ -89,4 +93,9 @@ function addAuthor(el, actor, config) {
         .c("poco:displayName").t("WIP2").up()
         .c("mastodon:scope").t("public").up()
     .up()
+}
+
+function validate(config) {
+    if (!config.hub) throw new Error("hub required");
+    if (!config.host) throw new Error("host required");
 }
