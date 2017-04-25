@@ -24,12 +24,22 @@ module.exports = function({config}) {
         }
     };
 
+    const pubsubhubbubsubsBase = db.sublevel('pubsubhubbubhsubs', {valueEncoding: 'json'});
+
+    const pubsubhubbubsubs = {
+        forTopic(topic) {
+            return levelPromise(pubsubhubbubsubsBase.sublevel(topic, {valueEncoding: 'json'}));
+        }
+    };
+
     return {
         graph: promisifyLevelGraph(levelgraph(db.sublevel('graph'))),
         db,
         posts,
         postsByAuthor,
         timelines,
+        pubsubhubbubsubsBase,
+        pubsubhubbubsubs,
         accounts
     }
 }
