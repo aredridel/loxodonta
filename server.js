@@ -20,5 +20,7 @@ replify({ name: 'loxodonta', path: '/tmp/repl' }, app, ctx);
 require('./handlers/host-meta')(ctx);
 require('./handlers/webfinger')(ctx);
 require('./handlers/atom')(ctx);
+require('./handlers/salmon')(ctx);
+require('./handlers/pubsubhubbub')(ctx);
 
 server.listen(process.env.PORT || 8014);
