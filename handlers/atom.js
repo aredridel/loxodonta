@@ -29,7 +29,7 @@ module.exports = function ({server, config, db}) {
             }
             res.setHeader('Content-Type', 'application/atom+xml; charset=utf-8');
             res.setHeader('Cache-Control', 'max-age=0, private, must-revalidate');
-            return as2feed2atom(as2, { host: config.HOST }).toString();
+            return as2feed2atom(as2, { host: config.HOST, hub: config.hub }).toString();
         });
     }));
 
@@ -55,7 +55,7 @@ module.exports = function ({server, config, db}) {
         return as2.then(as2 => {
             res.setHeader('Content-Type', 'application/atom+xml; charset=utf-8');
             res.setHeader('Cache-Control', 'max-age=0, private, must-revalidate');
-            return as2entry2atom(as2, { host: config.HOST }).toString();
+            return as2entry2atom(as2, { host: config.HOST, hub: config.hub }).toString();
         });
 		
 	}));

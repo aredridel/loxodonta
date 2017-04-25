@@ -2,5 +2,7 @@ const HOST = process.env.HOST || 'test.yayforqueers.net';
 
 module.exports = {
     HOST,
+    // hub: `https://pubsubhubbub.appspot.com/`,
+    hub: `http://${HOST}/hub`,
     db: 'db'
 }
