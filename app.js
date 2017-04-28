@@ -36,10 +36,14 @@ module.exports = class App {
 		// notify about mentions (salmon)
 		// Notify about reblog if it's a reblog (salmon)
 		// Notify about new post (PuSH)
-		pubsubhubbub.publish('https://pubsubhubbub.appspot.com/', [
-			`https://${this.config.HOST}/users/${post.author}/updates/${post.localid}.atom`
-		]).then(() => console.log("Notifying succeeded"), e => console.warn(`Notifying failed: ${e}`))
+		//
+		this.notify([`https://${this.config.HOST}/users/${post.author}.atom`]);
 		
+	}
+
+	notify(urls) {
+		pubsubhubbub.publish(this.config.hub, urls)
+			.then(() => console.log("Notifying succeeded"), e => console.warn(`Notifying failed: ${e}`))
 	}
 }
 
