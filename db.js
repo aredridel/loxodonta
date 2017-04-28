@@ -37,6 +37,7 @@ module.exports = function({config}) {
         db,
         posts,
         postsByAuthor,
+        timelinesBase,
         timelines,
         pubsubhubbubsubsBase,
         pubsubhubbubsubs,
