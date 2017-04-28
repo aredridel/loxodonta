@@ -7,7 +7,7 @@ const { as2feed2atom, as2entry2atom } = require('../bits/as2');
 module.exports = function ({server, config, db}) {
     server.get('/users/:user.atom', promiseHandler((req, res) => {
         const user = db.accounts.get(req.params.user)
-        const entryIDs = user.then(user => collect(db.timelines.forUser(user.username).createValueStream({reverse: true, limit: 100})));
+        const entryIDs = user.then(user => collect(db.postsByAuthor.forUser(user.username).createValueStream({reverse: true, limit: 100})));
         const entries = entryIDs.then(ids => pmap(ids, id => db.posts.get(id).catch(err => {
                 if (err.name != 'NotFoundError') throw err;
             })))

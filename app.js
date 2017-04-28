@@ -25,7 +25,7 @@ module.exports = class App {
 
 		this.db.posts.put(post.localid, post);
 		// Add to user's posts.
-		this.db.postsByAuthor.put(post.localid, post.localid);
+		this.db.postsByAuthor.forUser(post.author).put(post.localid, post.localid);
 		this.db.timelines.forUser(post.author).put(post.localid, post.localid);
 
 		// Fan out

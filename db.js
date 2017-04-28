@@ -16,7 +16,12 @@ module.exports = function({config}) {
 
     const accounts = levelPromise(db.sublevel('accounts', { valueEncoding: 'json' }))
     const posts = levelPromise(db.sublevel('posts', { valueEncoding: 'json' }));
-    const postsByAuthor = levelPromise(db.sublevel('postsByAuthor', { valueEncoding: 'json' }));
+    const postsByAuthorBase = levelPromise(db.sublevel('postsByAuthor', { valueEncoding: 'json' }));
+    const postsByAuthor = {
+        forUser(user) {
+            return levelPromise(postsByAuthorBase.sublevel(user, { valueEncoding: 'json' }));
+        }
+    };
     const timelinesBase = levelPromise(db.sublevel('timelines', { valueEncoding: 'json' }));
     const timelines = {
         forUser(user) {
@@ -36,6 +41,7 @@ module.exports = function({config}) {
         graph: promisifyLevelGraph(levelgraph(db.sublevel('graph'))),
         db,
         posts,
+        postsByAuthorBase,
         postsByAuthor,
         timelinesBase,
         timelines,
