@@ -1,6 +1,7 @@
 const ifP = require('if-p');
 const FlakeGen = require('flakeid');
 const pubsubhubbub = require('./bits/pubsubhubbub');
+const ts = require('internet-timestamp');
 
 const flake = new FlakeGen();
 
@@ -16,8 +17,12 @@ module.exports = class App {
 			() => this.db.accounts.put(username, {username, password}));
 	}
 
-	post(post) {
-		post.localid = flake.gen();
+	post(userPost) {
+		const post = Object.assign({
+			published: ts(new Date()),
+			localid: flake.gen()
+		}, userPost);
+
 		this.db.posts.put(post.localid, post);
 		// Add to user's posts.
 		this.db.postsByAuthor.put(post.localid, post.localid);
