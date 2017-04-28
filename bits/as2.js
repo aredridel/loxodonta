@@ -1,5 +1,4 @@
 const ltx = require('ltx');
-const ts = require('internet-timestamp');
 
 module.exports = {
     as2feed2atom,
@@ -54,8 +53,7 @@ function as2entry2atom(e, config) {
     validate(config);
     const entry = new ltx.Element('entry')
         .c('id').t(`https://${config.host}/users/${e.actor.id}/updates/${e.id}`).up()
-        .c('published').t(ts(new Date())).up()
-        .c('updated').t(ts(new Date())).up()
+        .c('published').t(e.published).up()
         .c('title').t('New status by test').up()
         .c('content', {
             type: 'html',
@@ -63,12 +61,14 @@ function as2entry2atom(e, config) {
         }).t(e.content).up()
         .c('activity:object-type').t('http://activitystrea.ms/schema/1.0/note').up()
         .c('activity:verb').t('http://activitystrea.ms/schema/1.0/post').up()
-        .c('summary', { 'xml:lang': "en" }).t('dissent from standard trans narratives').up()
-        .c('link', { rel: "mentioned", "ostatus:object-type": "http://activitystrea.ms/schema/1.0/person", href: "https://witches.town/users/jamuraa" }).up()
+        //.c('summary', { 'xml:lang': "en" }).t('dissent from standard trans narratives').up()
+        //.c('link', { rel: "mentioned", "ostatus:object-type": "http://activitystrea.ms/schema/1.0/person", href: "https://witches.town/users/jamuraa" }).up()
         .c('link', { rel: "mentioned", "ostatus:object-type": "http://activitystrea.ms/schema/1.0/collection", href:"http://activityschema.org/collection/public" }).up()
         .c('mastodon:scope').t('public').up()
         .c('link', { rel: "alternate", type: "text/html", href: `https://${config.host}/users/${e.actor.id}/updates/${e.id}` }).up()
         .c('link', { rel: "self", type: "application/atom+xml", href: `https://${config.host}/users/${e.actor.id}/updates/${e.id}.atom` }).up()
+
+    if (e.updated) entry.c('updated').t(e.updated)
 
     if (config.standalone || config.standalone == null) {
         addAuthor(entry, e.actor, config);
