@@ -30,7 +30,7 @@
     "levelgraph": "^2.0.1",
     "levelup": "^1.3.5",
     "ltx": "^2.7.1",
-    "magic-signatures": "^1.0.0-4",
+    "magic-signatures": "^1.0.4",
     "make-fetch-happen": "^2.2.4",
     "map-p": "^1.0.1",
     "promise": "^7.1.1",

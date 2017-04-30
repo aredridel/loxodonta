@@ -2,6 +2,7 @@ const ifP = require('if-p');
 const FlakeGen = require('flakeid');
 const pubsubhubbub = require('./bits/pubsubhubbub');
 const ts = require('internet-timestamp');
+const magic = require('magic-signatures');
 
 const flake = new FlakeGen();
 
@@ -14,7 +15,15 @@ module.exports = class App {
 		const existing = NotFoundAsNull(this.db.accounts.get(username))
 		return ifP(existing,
 			() => { throw new Error("user already exists") },
-			() => this.db.accounts.put(username, {username, password}));
+			() => {
+				const k = magic.generate(2048);
+				const obj = k.then(key => Object.assign({
+					username,
+					password
+				}, key));
+
+				return obj.then(obj => this.db.accounts.put(username, obj));
+			})
 	}
 
 	post(userPost) {
