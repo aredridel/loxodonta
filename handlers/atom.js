@@ -22,8 +22,6 @@ module.exports = function ({server, config, db}) {
 		return stamp > a ? stamp : a;
 	    }, "0");
 
-	    console.warn(updated);
-
             const as2 = {
                 updated,
                 actor,

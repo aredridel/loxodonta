@@ -24,7 +24,6 @@ module.exports = function ({server, db}) {
         const callbacks = topics.map(topic => {
             const targets = collect(db.pubsubhubbubsubs.forTopic(topic).createValueStream())
             return targets.then(targets => targets.map(target => {
-                console.warn(target);
                 const r = fetch(topic);
                 const contentType = r.then(r => r.headers.get('content-type'));
                 const body = r.then(r => {
@@ -91,7 +90,6 @@ function maybeHMAC(content, secret) {
         const hmac = crypto.createHmac('sha1', secret);
         hmac.update(content);
         const digest = hmac.digest();
-        console.warn(content, secret, digest.toString('hex'));
         return `sha1=${digest.toString('hex')}`;
     });
 
