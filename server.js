@@ -12,10 +12,10 @@ server.use((req, res, next) => {
 	next();
 })
 
-const ctx = { server, config, db };
 const app = new App({ server, config, db });
+const ctx = { server, config, db, app };
 
-replify({ name: 'loxodonta', path: '/tmp/repl' }, app, ctx);
+replify({ name: 'loxodonta', path: '/tmp/repl' }, app, { server, config, db });
 
 require('./handlers/host-meta')(ctx);
 require('./handlers/webfinger')(ctx);

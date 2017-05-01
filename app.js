@@ -54,6 +54,9 @@ module.exports = class App {
 		pubsubhubbub.publish(this.config.hub, urls)
 			.then(() => console.log("Notifying succeeded"), e => console.warn(`Notifying failed: ${e}`))
 	}
+
+	dispatchSalmon(salmon) {
+	}
 }
 
 function NotFoundAsNull(e) {
