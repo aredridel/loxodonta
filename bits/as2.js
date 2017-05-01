@@ -2,7 +2,8 @@ const ltx = require('ltx');
 
 module.exports = {
     as2feed2atom,
-    as2entry2atom
+    as2entry2atom,
+    atom2as2
 };
 
 function xmlnsify(el) {
@@ -98,4 +99,9 @@ function addAuthor(el, actor, config) {
 function validate(config) {
     if (!config.hub) throw new Error("hub required");
     if (!config.host) throw new Error("host required");
+}
+
+function atom2as2(xml) {
+    console.warn(xml);
+    return {};
 }

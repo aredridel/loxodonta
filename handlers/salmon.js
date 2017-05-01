@@ -6,6 +6,7 @@ const ltx = require('ltx');
 const webfinger = require('../bits/webfinger');
 const fetch = require('make-fetch-happen');
 const dataurl = require('parse-data-url');
+const { atom2as2 } = require('../bits/as2');
 
 const ATOMNS = 'http://www.w3.org/2005/Atom';
 
@@ -37,7 +38,7 @@ module.exports = function ({server, app}) {
 
 			const verified = key.then(key => sigs.verify(ms, key));
 
-			return verified.then(() => app.dispatchSalmon(data))
+			return verified.then(() => app.dispatchSalmon(atom2as2(data)))
 				.then(() => '');
 		} else {
 			throw new Error(`Unknown type ${ms.data_type}`);
