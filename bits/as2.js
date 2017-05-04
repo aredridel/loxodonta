@@ -1,5 +1,11 @@
 const ltx = require('ltx');
 
+const ATOMNS = 'http://www.w3.org/2005/Atom';
+const ACTIVITYNS = 'http://activitystrea.ms/spec/1.0/';
+const POCONS = "http://portablecontacts.net/spec/1.0";
+const MASTODONNS = "http://mastodon.social/schema/1.0";
+const error = require('./error');
+
 module.exports = {
     as2feed2atom,
     as2entry2atom,
@@ -8,13 +14,13 @@ module.exports = {
 
 function xmlnsify(el) {
     const nsen = {
-        "xmlns": "http://www.w3.org/2005/Atom",
+        "xmlns": ATOMNS,
         "xmlns:thr": "http://purl.org/syndication/thread/1.0",
-        "xmlns:activity": "http://activitystrea.ms/spec/1.0/",
-        "xmlns:poco": "http://portablecontacts.net/spec/1.0",
+        "xmlns:activity": ACTIVITYNS,
+        "xmlns:poco": POCONS,
         "xmlns:media": "http://purl.org/syndication/atommedia",
         "xmlns:ostatus": "http://ostatus.org/schema/1.0",
-        "xmlns:mastodon": "http://mastodon.social/schema/1.0",
+        "xmlns:mastodon": MASTODONNS,
     };
 
     Object.keys(nsen).forEach(qname => {
