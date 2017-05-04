@@ -3,6 +3,7 @@ const url = require('url');
 const qs = require('querystring');
 const ltx = require('ltx');
 const mimeMatch = require('mime-match');
+const error = require('./error');
 
 module.exports = webfinger;
 
@@ -19,10 +20,6 @@ function webfinger(resource) {
                 : mimeMatch('application/jrd+json', type) ? res.json()
                 : error(`Cannot handle ${res.headers['content-type']}`)
         });
-}
-
-function error(msg) {
-    throw new Error(msg);
 }
 
 function parseXML(xml) {

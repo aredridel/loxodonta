@@ -102,6 +102,7 @@ function validate(config) {
 }
 
 function atom2as2(xml) {
-    console.warn(xml);
+    const atom = ltx.parse(xml);
+    console.warn(atom);
     return {};
 }
