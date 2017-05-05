@@ -1,10 +1,3 @@
-module.exports = {
-  coreTypes,
-  activityTypes,
-  actorTypes,
-  objectAndLinkTypes
-}
-
 const activityTypes = {
   Accept: {
     uri: `https://www.w3.org/ns/activitystreams#Accept`,
@@ -1166,5 +1159,17 @@ Refer to the Activity Streams 2.0 Core specification for a complete description 
       'startIndex'
     ]
   }
-
 };
+
+const allTypes = Object.assign({}, coreTypes, activityTypes, actorTypes, objectAndLinkTypes)
+
+const byURI = Object.keys(allTypes).reduce((a, e) => (a[allTypes[e].uri] = allTypes[e], a), {});
+
+module.exports = {
+  coreTypes,
+  activityTypes,
+  actorTypes,
+  objectAndLinkTypes,
+  allTypes,
+  byURI
+}
