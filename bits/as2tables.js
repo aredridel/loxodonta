@@ -1,6 +1,7 @@
 module.exports = {
   activityTypes,
-  actorTypes
+  actorTypes,
+  objectAndLinkTypes
 }
 
 const activityTypes = {
@@ -761,3 +762,227 @@ const actorTypes = {
     extends: `Object`,
   }
 };
+
+const objectAndLinkTypes = {
+  Relationship: {
+    uri: 'https://www.w3.org/ns/activitystreams#Relationship',
+    examples: [
+      {
+        "@context": "https://www.w3.org/ns/activitystreams",
+        "summary": "Sally is an acquaintance of John",
+        "type": "Relationship",
+        "subject": {
+          "type": "Person",
+          "name": "Sally"
+        },
+        "relationship": "http://purl.org/vocab/relationship/acquaintanceOf",
+        "object": {
+          "type": "Person",
+          "name": "John"
+        }
+      }],
+    notes: `Describes a relationship between two individuals. The subject and object properties are used to identify the connected individuals.
+
+See 5.2 Representing Relationships Between Entities for additional information.`,
+
+    extends: `Object`,
+    properties: [
+      'subject', 'object', 'relationship'
+    ],
+  },
+
+  Article: {
+    uri: 'https://www.w3.org/ns/activitystreams#Article',
+    examples: [
+      {
+        "@context": "https://www.w3.org/ns/activitystreams",
+        "type": "Article",
+        "name": "What a Crazy Day I Had",
+        "content": "<div>... you will never believe ...</div>",
+        "attributedTo": "http://sally.example.org"
+      }],
+    notes: `Represents any kind of multi-paragraph written work.`,
+    extends: `Object`,
+  },
+  Document: {
+    uri: 'https://www.w3.org/ns/activitystreams#Document',
+    examples: [
+      {
+        "@context": "https://www.w3.org/ns/activitystreams",
+        "type": "Document",
+        "name": "4Q Sales Forecast",
+        "url": "http://example.org/4q-sales-forecast.pdf"
+      }],
+    notes: `Represents a document of any kind.`,
+    extends: `Object`,
+  },
+  Audio: {
+    uri: 'https://www.w3.org/ns/activitystreams#Audio',
+    examples: [
+      {
+        "@context": "https://www.w3.org/ns/activitystreams",
+        "type": "Audio",
+        "name": "Interview With A Famous Technologist",
+        "url": {
+          "type": "Link",
+          "href": "http://example.org/podcast.mp3",
+          "mediaType": "audio/mp3"
+        }
+      }],
+    notes: `Represents an audio document of any kind.`,
+    extends: `Document`,
+  },
+  Image: {
+    uri: 'https://www.w3.org/ns/activitystreams#Image',
+    examples: [
+      {
+        "@context": "https://www.w3.org/ns/activitystreams",
+        "type": "Image",
+        "name": "Cat Jumping on Wagon",
+        "url": [
+          {
+            "type": "Link",
+            "href": "http://example.org/image.jpeg",
+            "mediaType": "image/jpeg"
+          },
+          {
+            "type": "Link",
+            "href": "http://example.org/image.png",
+            "mediaType": "image/png"
+          }
+        ]
+      }],
+    notes: `An image document of any kind`,
+    extends: `Document`,
+  },
+  Video: {
+    uri: 'https://www.w3.org/ns/activitystreams#Video',
+    examples: [
+      {
+        "@context": "https://www.w3.org/ns/activitystreams",
+        "type": "Video",
+        "name": "Puppy Plays With Ball",
+        "url": "http://example.org/video.mkv",
+        "duration": "PT2H"
+      }],
+    notes: `Represents a video document of any kind.`,
+    extends: `Document`,
+  },
+  Note: {
+    uri: 'https://www.w3.org/ns/activitystreams#Note',
+    examples: [
+      {
+        "@context": "https://www.w3.org/ns/activitystreams",
+        "type": "Note",
+        "name": "A Word of Warning",
+        "content": "Looks like it is going to rain today. Bring an umbrella!"
+      }],
+    notes: `Represents a short written work typically less than a single paragraph in length.`,
+    extends: `Object`,
+  },
+  Page: {
+    uri: 'https://www.w3.org/ns/activitystreams#Page',
+    examples: [
+      {
+        "@context": "https://www.w3.org/ns/activitystreams",
+        "type": "Page",
+        "name": "Omaha Weather Report",
+        "url": "http://example.org/weather-in-omaha.html"
+      }],
+    notes: `Represents a Web Page.`,
+    extends: `Document`,
+  },
+  Event: {
+    uri: 'https://www.w3.org/ns/activitystreams#Event',
+    examples: [
+      {
+        "@context": "https://www.w3.org/ns/activitystreams",
+        "type": "Event",
+        "name": "Going-Away Party for Jim",
+        "startTime": "2014-12-31T23:00:00-08:00",
+        "endTime": "2015-01-01T06:00:00-08:00"
+      }],
+    notes: `Represents any kind of event.`,
+    extends: `Object`,
+  },
+  Place: {
+    uri: 'https://www.w3.org/ns/activitystreams#Place',
+    examples: [
+      {
+        "@context": "https://www.w3.org/ns/activitystreams",
+        "type": "Place",
+        "name": "Work"
+      },
+      {
+        "@context": "https://www.w3.org/ns/activitystreams",
+        "type": "Place",
+        "name": "Fresno Area",
+        "latitude": 36.75,
+        "longitude": 119.7667,
+        "radius": 15,
+        "units": "miles"
+      }],
+    notes: `Represents a logical or physical location. See 5.3 Representing Places for additional information.`,
+    extends: `Object`,
+    properties: [
+      'accuracy', 'altitude', 'latitude', 'longitude', 'radius', 'units'],
+  },
+  Mention: {
+    uri: 'https://www.w3.org/ns/activitystreams#Mention',
+    examples: [
+      {
+        "@context": "https://www.w3.org/ns/activitystreams",
+        "summary": "Mention of Joe by Carrie in her note",
+        "type": "Mention",
+        "href": "http://example.org/joe",
+        "name": "Joe"
+      }],
+    notes: `A specialized Link that represents an @mention.`,
+    extends: `Link`,
+  },
+  Profile: {
+    uri: 'https://www.w3.org/ns/activitystreams#Profile',
+    examples: [
+      {
+        "@context": "https://www.w3.org/ns/activitystreams",
+        "type": "Profile",
+        "summary": "Sally's Profile",
+        "describes": {
+          "type": "Person",
+          "name": "Sally Smith"
+        }
+      }],
+    notes: `A Profile is a content object that describes another Object, typically used to describe Actor Type objects. The describes property is used to reference the object being described by the profile.`,
+    extends: `Object`,
+    Properties: ['describes'],
+  },
+
+  Tombstone: {
+    uri: 'https://www.w3.org/ns/activitystreams#Tombstone',
+    examples: [
+      {
+        "type": "OrderedCollection",
+        "totalItems": 3,
+        "name": "Vacation photos 2016",
+        "orderedItems": [
+          {
+            "type": "Image",
+            "id": "http://image.example/1"
+          },
+          {
+            "type": "Tombstone",
+            "formerType": "Image",
+            "id": "http://image.example/2",
+            "deleted": "2016-03-17T00:00:00Z"
+          },
+          {
+            "type": "Image",
+            "id": "http://image.example/3"
+          }
+        ]
+      }],
+    notes: `A Tombstone represents a content object that has been deleted. It can be used in Collections to signify that there used to be an object at this position, but it has been deleted.`,
+    extends: `Object`,
+    properties: ['formerType', 'deleted'],
+  },
+}
