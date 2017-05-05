@@ -1,4 +1,5 @@
 module.exports = {
+  coreTypes,
   activityTypes,
   actorTypes,
   objectAndLinkTypes
@@ -986,3 +987,184 @@ See 5.2 Representing Relationships Between Entities for additional information.`
     properties: ['formerType', 'deleted'],
   },
 }
+
+const coreTypes = {
+  Object: {
+    uri: 'https://www.w3.org/ns/activitystreams#Object',
+    examples: [
+      {
+        "@context": "https://www.w3.org/ns/activitystreams",
+        "type": "Object",
+        "id": "http://www.test.example/object/1",
+        "name": "A Simple, non-specific object"
+      }],
+    notes: `Describes an object of any kind. The Object type serves as the base type for most of the other kinds of objects defined in the Activity Vocabulary, including other Core types such as Activity, IntransitiveActivity, Collection and OrderedCollection.`,
+    disjoint: 'Link',
+    properties: [
+      'attachment', 'attributedTo', 'audience', 'content', 'context', 'name', 'endTime', 'generator', 'icon', 'image', 'inReplyTo', 'location', 'preview', 'published', 'replies', 'startTime', 'summary', 'tag', 'updated', 'url', 'to', 'bto', 'cc', 'bcc', 'mediaType', 'duration'
+    ]
+  },
+
+  Link: {
+    uri: 'https://www.w3.org/ns/activitystreams#Link',
+    examples: [
+      {
+        "@context": "https://www.w3.org/ns/activitystreams",
+        "type": "Link",
+        "href": "http://example.org/abc",
+        "hreflang": "en",
+        "mediaType": "text/html",
+        "name": "An example link"
+      }],
+    notes: `A Link is an indirect, qualified reference to a resource identified by a URL. The fundamental model for links is established by [ RFC5988]. Many of the properties defined by the Activity Vocabulary allow values that are either instances of Object or Link. When a Link is used, it establishes a qualified relation connecting the subject (the containing object) to the resource identified by the href. Properties of the Link are properties of the reference as opposed to properties of the resource.`,
+    disjoint: `Object`,
+    properties: [
+      'href', 'rel', 'mediaType', 'name', 'hreflang', 'height', 'width', 'preview'],
+  },
+  Activity: {
+    uri: 'https://www.w3.org/ns/activitystreams#Activity',
+    examples: [
+      {
+        "@context": "https://www.w3.org/ns/activitystreams",
+        "type": "Activity",
+        "summary": "Sally did something to a note",
+        "actor": {
+          "type": "Person",
+          "name": "Sally"
+        },
+        "object": {
+          "type": "Note",
+          "name": "A Note"
+        }
+      }],
+    notes: `An Activity is a subtype of Object that describes some form of action that may happen, is currently happening, or has already happened. The Activity type itself serves as an abstract base type for all types of activities. It is important to note that the Activity type itself does not carry any specific semantics about the kind of action being taken.`,
+    extends: `Object`,
+    properties: [
+      'actor', 'object', 'target', 'result', 'origin', 'instrument'
+    ],
+  },
+  IntransitiveActivity: {
+    uri: 'https://www.w3.org/ns/activitystreams#IntransitiveActivity',
+    examples: [
+      {
+        "@context": "https://www.w3.org/ns/activitystreams",
+        "type": "Travel",
+        "summary": "Sally went to work",
+        "actor": {
+          "type": "Person",
+          "name": "Sally"
+        },
+        "target": {
+          "type": "Place",
+          "name": "Work"
+        }
+      }],
+    notes: `Instances of IntransitiveActivity are a subtype of Activity representing intransitive actions. The object property is therefore inappropriate for these activities.`,
+    extends: `Activity`,
+  },
+
+  Collection: {
+    uri: 'https://www.w3.org/ns/activitystreams#Collection',
+    examples: [
+      {
+        "@context": "https://www.w3.org/ns/activitystreams",
+        "summary": "Sally's notes",
+        "type": "Collection",
+        "totalItems": 2,
+        "items": [
+          {
+            "type": "Note",
+            "name": "A Simple Note"
+          },
+          {
+            "type": "Note",
+            "name": "Another Simple Note"
+          }
+        ]
+      }],
+    notes: `A Collection is a subtype of Object that represents ordered or unordered sets of Object or Link instances.
+
+Refer to the Activity Streams 2.0 Core specification for a complete description of the Collection type.`,
+
+    extends: `Object`,
+    properties: ['totalItems', 'current', 'first', 'last', 'items'],
+  },
+  OrderedCollection: {
+    uri: 'https://www.w3.org/ns/activitystreams#OrderedCollection',
+    examples: [
+      {
+        "@context": "https://www.w3.org/ns/activitystreams",
+        "summary": "Sally's notes",
+        "type": "OrderedCollection",
+        "totalItems": 2,
+        "orderedItems": [
+          {
+            "type": "Note",
+            "name": "A Simple Note"
+          },
+          {
+            "type": "Note",
+            "name": "Another Simple Note"
+          }
+        ]
+      }],
+    notes: `A subtype of Collection in which members of the logical collection are assumed to always be strictly ordered.`,
+
+    extends: `Collection`,
+  },
+
+  CollectionPage: {
+    uri: 'https://www.w3.org/ns/activitystreams#CollectionPage',
+    examples: [
+      {
+        "@context": "https://www.w3.org/ns/activitystreams",
+        "summary": "Page 1 of Sally's notes",
+        "type": "CollectionPage",
+        "id": "http://example.org/foo?page=1",
+        "partOf": "http://example.org/foo",
+        "items": [
+          {
+            "type": "Note",
+            "name": "A Simple Note"
+          },
+          {
+            "type": "Note",
+            "name": "Another Simple Note"
+          }
+        ]
+      }],
+    notes: `Used to represent distinct subsets of items from a Collection. Refer to the Activity Streams 2.0 Core for a complete description of the CollectionPage object.`,
+
+    extends: `Collection`,
+    properties: ['partOf', 'next', 'prev'],
+
+  },
+  OrderedCollectionPage: {
+    uri: 'https://www.w3.org/ns/activitystreams#OrderedCollectionPage',
+    examples: [
+      {
+        "@context": "https://www.w3.org/ns/activitystreams",
+        "summary": "Page 1 of Sally's notes",
+        "type": "OrderedCollectionPage",
+        "id": "http://example.org/foo?page=1",
+        "partOf": "http://example.org/foo",
+        "orderedItems": [
+          {
+            "type": "Note",
+            "name": "A Simple Note"
+          },
+          {
+            "type": "Note",
+            "name": "Another Simple Note"
+          }
+        ]
+      }],
+    notes: `Used to represent ordered subsets of items from an OrderedCollection. Refer to the Activity Streams 2.0 Core for a complete description of the OrderedCollectionPage object.`,
+
+    extends: ['OrderedCollection', 'CollectionPage'],
+    properties: [
+      'startIndex'
+    ]
+  }
+
+};
