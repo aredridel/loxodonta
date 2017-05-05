@@ -1,5 +1,6 @@
 const activityTypes = {
   Accept: {
+    name: 'Accept',
     uri: `https://www.w3.org/ns/activitystreams#Accept`,
     examples: [
       {
@@ -42,6 +43,7 @@ const activityTypes = {
   // Properties:	Inherits all properties from Activity.
   },
   TentativeAccept: {
+    name: 'TentativeAccept',
     uri: `https://www.w3.org/ns/activitystreams#TentativeAccept`,
     examples: [
       {
@@ -67,6 +69,7 @@ const activityTypes = {
   //Properties:	Inherits all properties from Accept.
   },
   Add: {
+    name: 'Add',
     uri: `https://www.w3.org/ns/activitystreams#Add`,
     examples: [
       {
@@ -107,6 +110,7 @@ const activityTypes = {
   //Properties:	Inherits all properties from Activity.
   },
   Arrive: {
+    name: 'Arrive',
     uri: `https://www.w3.org/ns/activitystreams#Arrive`,
     examples: [
       {
@@ -133,6 +137,7 @@ const activityTypes = {
   },
 
   Create: {
+    name: 'Create',
     uri: `https://www.w3.org/ns/activitystreams#Create`,
     examples: [
       {
@@ -155,6 +160,7 @@ const activityTypes = {
   //Properties:	Inherits all properties from Activity.
   },
   Delete: {
+    name: 'Delete',
     uri: `https://www.w3.org/ns/activitystreams#Delete`,
     examples: [
       {
@@ -177,6 +183,7 @@ const activityTypes = {
   //Properties:	Inherits all properties from Activity.
   },
   Follow: {
+    name: 'Follow',
     uri: 'https://www.w3.org/ns/activitystreams#Follow',
     examples: [
       {
@@ -199,6 +206,7 @@ const activityTypes = {
   },
 
   Ignore: {
+    name: 'Ignore',
     uri: 'https://www.w3.org/ns/activitystreams#Ignore',
     examples: [
       {
@@ -217,6 +225,7 @@ const activityTypes = {
   // Properties:	Inherits all properties from Activity.
   },
   Join: {
+    name: 'Join',
     uri: 'https://www.w3.org/ns/activitystreams#Join',
     examples: [
       {
@@ -238,6 +247,7 @@ const activityTypes = {
   // Properties:	Inherits all properties from Activity.
   },
   Leave: {
+    name: 'Leave',
     uri: 'https://www.w3.org/ns/activitystreams#Leave',
     examples: [
       {
@@ -272,6 +282,7 @@ const activityTypes = {
   // Properties:	Inherits all properties from Activity.
   },
   Like: {
+    name: 'Like',
     uri: 'https://www.w3.org/ns/activitystreams#Like',
     examples: [
       {
@@ -290,6 +301,7 @@ const activityTypes = {
   // Properties:	Inherits all properties from Activity.
   },
   Offer: {
+    name: 'Offer',
     uri: 'https://www.w3.org/ns/activitystreams#Offer',
     examples: [
       {
@@ -315,6 +327,7 @@ const activityTypes = {
   // Properties:	Inherits all properties from Activity.
   },
   Invite: {
+    name: 'Invite',
     uri: 'https://www.w3.org/ns/activitystreams#Invite',
     examples: [
       {
@@ -346,6 +359,7 @@ const activityTypes = {
   // Properties:	Inherits all properties from Offer.
   },
   Reject: {
+    name: 'Reject',
     uri: 'https://www.w3.org/ns/activitystreams#Reject',
     examples: [
       {
@@ -371,6 +385,7 @@ const activityTypes = {
   // Properties:	Inherits all properties from Activity.
   },
   TentativeReject: {
+    name: 'TentativeReject',
     uri: 'https://www.w3.org/ns/activitystreams#TentativeReject',
     examples: [
       {
@@ -396,6 +411,7 @@ const activityTypes = {
   // Properties:	Inherits all properties from Reject.
   },
   Remove: {
+    name: 'Remove',
     uri: 'https://www.w3.org/ns/activitystreams#Remove',
     examples: [
       {
@@ -435,6 +451,7 @@ const activityTypes = {
   // Properties:	Inherits all properties from Activity.
   },
   Undo: {
+    name: 'Undo',
     uri: 'https://www.w3.org/ns/activitystreams#Undo',
     examples: [
       {
@@ -458,6 +475,7 @@ The target and origin typically have no defined meaning.`,
   // Properties:	Inherits all properties from Activity.
   },
   Update: {
+    name: 'Update',
     uri: 'https://www.w3.org/ns/activitystreams#Update',
     examples: [
       {
@@ -478,6 +496,7 @@ The target and origin typically have no defined meaning.`,
   // Properties:	Inherits all properties from Activity.
   },
   View: {
+    name: 'View',
     uri: 'https://www.w3.org/ns/activitystreams#View',
     examples: [
       {
@@ -499,6 +518,7 @@ The target and origin typically have no defined meaning.`,
   // Properties:	Inherits all properties from Activity.
   },
   Listen: {
+    name: 'Listen',
     uri: 'https://www.w3.org/ns/activitystreams#Listen',
     examples: [
       {
@@ -517,6 +537,7 @@ The target and origin typically have no defined meaning.`,
   // Properties:	Inherits all properties from Activity.
   },
   Read: {
+    name: 'Read',
     uri: 'https://www.w3.org/ns/activitystreams#Read',
     examples: [
       {
@@ -535,6 +556,7 @@ The target and origin typically have no defined meaning.`,
   // Properties:	Inherits all properties from Activity.
   },
   Move: {
+    name: 'Move',
     uri: 'https://www.w3.org/ns/activitystreams#Move',
     examples: [
       {
@@ -561,6 +583,7 @@ The target and origin typically have no defined meaning.`,
   // Properties:	Inherits all properties from Activity.
   },
   Travel: {
+    name: 'Travel',
     uri: 'https://www.w3.org/ns/activitystreams#Travel',
     examples: [
       {
@@ -586,6 +609,7 @@ The target and origin typically have no defined meaning.`,
   // Properties:	Inherits all properties from IntransitiveActivity.
   },
   Announce: {
+    name: 'Announce',
     uri: 'https://www.w3.org/ns/activitystreams#Announce',
     examples: [
       {
@@ -615,6 +639,7 @@ The origin typically has no defined meaning.`,
   // Properties:	Inherits all properties from Activity.
   },
   Block: {
+    name: 'Block',
     uri: 'https://www.w3.org/ns/activitystreams#Block',
     examples: [
       {
@@ -630,6 +655,7 @@ The origin typically has no defined meaning.`,
   // Properties:	Inherits all properties from Ignore.
   },
   Flag: {
+    name: 'Flag',
     uri: 'https://www.w3.org/ns/activitystreams#Flag',
     examples: [
       {
@@ -648,6 +674,7 @@ The origin typically has no defined meaning.`,
   // Properties:	Inherits all properties from Activity.
   },
   Dislike: {
+    name: 'Dislike',
     uri: 'https://www.w3.org/ns/activitystreams#Dislike',
     examples: [
       {
@@ -663,6 +690,7 @@ The origin typically has no defined meaning.`,
   // Properties:	Inherits all properties from Activity.
   },
   Question: {
+    name: 'Question',
     uri: 'https://www.w3.org/ns/activitystreams#Question',
     examples: [
       {
@@ -700,6 +728,7 @@ Either of the anyOf and oneOf properties may be used to express possible answers
 
 const actorTypes = {
   Application: {
+    name: 'Application',
     uri: 'https://www.w3.org/ns/activitystreams#Application',
     examples: [
       {
@@ -711,6 +740,7 @@ const actorTypes = {
     extends: `Object`,
   },
   Group: {
+    name: 'Group',
     uri: 'https://www.w3.org/ns/activitystreams#Group',
     examples: [
       {
@@ -723,6 +753,7 @@ const actorTypes = {
   },
 
   Organization: {
+    name: 'Organization',
     uri: 'https://www.w3.org/ns/activitystreams#Organization',
     examples: [
       {
@@ -734,6 +765,7 @@ const actorTypes = {
     extends: `Object`,
   },
   Person: {
+    name: 'Person',
     uri: 'https://www.w3.org/ns/activitystreams#Person',
     examples: [
       {
@@ -745,6 +777,7 @@ const actorTypes = {
     extends: `Object`,
   },
   Service: {
+    name: 'Service',
     uri: 'https://www.w3.org/ns/activitystreams#Service',
     examples: [
       {
@@ -759,6 +792,7 @@ const actorTypes = {
 
 const objectAndLinkTypes = {
   Relationship: {
+    name: 'Relationship',
     uri: 'https://www.w3.org/ns/activitystreams#Relationship',
     examples: [
       {
@@ -786,6 +820,7 @@ See 5.2 Representing Relationships Between Entities for additional information.`
   },
 
   Article: {
+    name: 'Article',
     uri: 'https://www.w3.org/ns/activitystreams#Article',
     examples: [
       {
@@ -799,6 +834,7 @@ See 5.2 Representing Relationships Between Entities for additional information.`
     extends: `Object`,
   },
   Document: {
+    name: 'Document',
     uri: 'https://www.w3.org/ns/activitystreams#Document',
     examples: [
       {
@@ -811,6 +847,7 @@ See 5.2 Representing Relationships Between Entities for additional information.`
     extends: `Object`,
   },
   Audio: {
+    name: 'Audio',
     uri: 'https://www.w3.org/ns/activitystreams#Audio',
     examples: [
       {
@@ -827,6 +864,7 @@ See 5.2 Representing Relationships Between Entities for additional information.`
     extends: `Document`,
   },
   Image: {
+    name: 'Image',
     uri: 'https://www.w3.org/ns/activitystreams#Image',
     examples: [
       {
@@ -850,6 +888,7 @@ See 5.2 Representing Relationships Between Entities for additional information.`
     extends: `Document`,
   },
   Video: {
+    name: 'Video',
     uri: 'https://www.w3.org/ns/activitystreams#Video',
     examples: [
       {
@@ -863,6 +902,7 @@ See 5.2 Representing Relationships Between Entities for additional information.`
     extends: `Document`,
   },
   Note: {
+    name: 'Note',
     uri: 'https://www.w3.org/ns/activitystreams#Note',
     examples: [
       {
@@ -875,6 +915,7 @@ See 5.2 Representing Relationships Between Entities for additional information.`
     extends: `Object`,
   },
   Page: {
+    name: 'Page',
     uri: 'https://www.w3.org/ns/activitystreams#Page',
     examples: [
       {
@@ -887,6 +928,7 @@ See 5.2 Representing Relationships Between Entities for additional information.`
     extends: `Document`,
   },
   Event: {
+    name: 'Event',
     uri: 'https://www.w3.org/ns/activitystreams#Event',
     examples: [
       {
@@ -900,6 +942,7 @@ See 5.2 Representing Relationships Between Entities for additional information.`
     extends: `Object`,
   },
   Place: {
+    name: 'Place',
     uri: 'https://www.w3.org/ns/activitystreams#Place',
     examples: [
       {
@@ -922,6 +965,7 @@ See 5.2 Representing Relationships Between Entities for additional information.`
       'accuracy', 'altitude', 'latitude', 'longitude', 'radius', 'units'],
   },
   Mention: {
+    name: 'Mention',
     uri: 'https://www.w3.org/ns/activitystreams#Mention',
     examples: [
       {
@@ -935,6 +979,7 @@ See 5.2 Representing Relationships Between Entities for additional information.`
     extends: `Link`,
   },
   Profile: {
+    name: 'Profile',
     uri: 'https://www.w3.org/ns/activitystreams#Profile',
     examples: [
       {
@@ -952,6 +997,7 @@ See 5.2 Representing Relationships Between Entities for additional information.`
   },
 
   Tombstone: {
+    name: 'Tombstone',
     uri: 'https://www.w3.org/ns/activitystreams#Tombstone',
     examples: [
       {
@@ -983,6 +1029,7 @@ See 5.2 Representing Relationships Between Entities for additional information.`
 
 const coreTypes = {
   Object: {
+    name: 'Object',
     uri: 'https://www.w3.org/ns/activitystreams#Object',
     examples: [
       {
@@ -999,6 +1046,7 @@ const coreTypes = {
   },
 
   Link: {
+    name: 'Link',
     uri: 'https://www.w3.org/ns/activitystreams#Link',
     examples: [
       {
@@ -1015,6 +1063,7 @@ const coreTypes = {
       'href', 'rel', 'mediaType', 'name', 'hreflang', 'height', 'width', 'preview'],
   },
   Activity: {
+    name: 'Activity',
     uri: 'https://www.w3.org/ns/activitystreams#Activity',
     examples: [
       {
@@ -1037,6 +1086,7 @@ const coreTypes = {
     ],
   },
   IntransitiveActivity: {
+    name: 'IntransitiveActivity',
     uri: 'https://www.w3.org/ns/activitystreams#IntransitiveActivity',
     examples: [
       {
@@ -1057,6 +1107,7 @@ const coreTypes = {
   },
 
   Collection: {
+    name: 'Collection',
     uri: 'https://www.w3.org/ns/activitystreams#Collection',
     examples: [
       {
@@ -1083,6 +1134,7 @@ Refer to the Activity Streams 2.0 Core specification for a complete description 
     properties: ['totalItems', 'current', 'first', 'last', 'items'],
   },
   OrderedCollection: {
+    name: 'OrderedCollection',
     uri: 'https://www.w3.org/ns/activitystreams#OrderedCollection',
     examples: [
       {
@@ -1107,6 +1159,7 @@ Refer to the Activity Streams 2.0 Core specification for a complete description 
   },
 
   CollectionPage: {
+    name: 'CollectionPage',
     uri: 'https://www.w3.org/ns/activitystreams#CollectionPage',
     examples: [
       {
@@ -1133,6 +1186,7 @@ Refer to the Activity Streams 2.0 Core specification for a complete description 
 
   },
   OrderedCollectionPage: {
+    name: 'OrderedCollectionPage',
     uri: 'https://www.w3.org/ns/activitystreams#OrderedCollectionPage',
     examples: [
       {
