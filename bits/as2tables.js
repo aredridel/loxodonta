@@ -1,5 +1,6 @@
 module.exports = {
-  activityTypes
+  activityTypes,
+  actorTypes
 }
 
 const activityTypes = {
@@ -699,5 +700,64 @@ Either of the anyOf and oneOf properties may be used to express possible answers
     properties: [
       'oneOf', 'anyOf', 'closed'
     ]
+  }
+};
+
+const actorTypes = {
+  Application: {
+    uri: 'https://www.w3.org/ns/activitystreams#Application',
+    examples: [
+      {
+        "@context": "https://www.w3.org/ns/activitystreams",
+        "type": "Application",
+        "name": "Exampletron 3000"
+      }],
+    notes: `Describes a software application.`,
+    extends: `Object`,
+  },
+  Group: {
+    uri: 'https://www.w3.org/ns/activitystreams#Group',
+    examples: [
+      {
+        "@context": "https://www.w3.org/ns/activitystreams",
+        "type": "Group",
+        "name": "Big Beards of Austin"
+      }],
+    notes: `Represents a formal or informal collective of Actors.`,
+    extends: `Object`,
+  },
+
+  Organization: {
+    uri: 'https://www.w3.org/ns/activitystreams#Organization',
+    examples: [
+      {
+        "@context": "https://www.w3.org/ns/activitystreams",
+        "type": "Organization",
+        "name": "Example Co."
+      }],
+    notes: `Represents an organization.`,
+    extends: `Object`,
+  },
+  Person: {
+    uri: 'https://www.w3.org/ns/activitystreams#Person',
+    examples: [
+      {
+        "@context": "https://www.w3.org/ns/activitystreams",
+        "type": "Person",
+        "name": "Sally Smith"
+      }],
+    notes: `Represents an individual person.`,
+    extends: `Object`,
+  },
+  Service: {
+    uri: 'https://www.w3.org/ns/activitystreams#Service',
+    examples: [
+      {
+        "@context": "https://www.w3.org/ns/activitystreams",
+        "type": "Service",
+        "name": "Acme Web Service"
+      }],
+    notes: `Represents a service of any kind.`,
+    extends: `Object`,
   }
 };
