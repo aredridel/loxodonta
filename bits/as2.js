@@ -5,6 +5,7 @@ const ACTIVITYNS = 'http://activitystrea.ms/spec/1.0/';
 const POCONS = "http://portablecontacts.net/spec/1.0";
 const MASTODONNS = "http://mastodon.social/schema/1.0";
 const error = require('./error');
+const as2tables = require('activitystreams-xl').tables;
 
 module.exports = {
     as2feed2atom,
@@ -108,7 +109,60 @@ function validate(config) {
 }
 
 function atom2as2(xml) {
+    console.warn(xml);
     const atom = ltx.parse(xml);
-    console.warn(atom);
-    return {};
+    if (atom.name == 'feed') {
+        return {items: atom.children.map(entry2as2)};
+    } else if (atom.name == 'entry') {
+        return {items: [ entry2as2(atom) ] };
+    } else {
+        throw new Error(`unrecognized type of element ${atom.name})`);
+    }
+}
+
+function entry2as2(el) {
+    const out = {
+        id: getText(el, 'id', ATOMNS),
+        title: getText(el, 'title', ATOMNS),
+        content: getText(el, 'content', ATOMNS),
+        actor: elementToAs2(el.getChild('author', ATOMNS)),
+        type: urlToType(getText(el, 'verb', ACTIVITYNS)) || getText(el, 'object-type', ACTIVITYNS) || 'Add',
+        object: elementToAs2(el.getChild('object', ACTIVITYNS)),
+        target: elementToAs2(el.getChild('target', ACTIVITYNS)),
+    };
+
+    return out;
+}
+
+function getText(el, name, ns) {
+    const sub = el.getChild(name, ns)
+    if (sub) return sub.getText();
+}
+
+
+function elementToAs2(el) {
+    // TODO: figure out if this is an implicit or explicit event
+    if (!el) return;
+    const objectTypeUrl = getText(el, 'object-type', ACTIVITYNS);
+    const objectType = urlToType(objectTypeUrl) || error(`unknown type '${objectTypeUrl}'`);
+
+    return {
+        id: getText(el, 'id', ATOMNS),
+        uri: getText(el, 'uri', ATOMNS),
+        name: getText(el, 'name', POCONS),
+        'mastodon:scope': getText(el, 'scope', MASTODONNS),
+        // Handle links?
+        email: getText(el, 'email', ATOMNS),
+        name: getText(el, 'displayName', POCONS),
+        'poco:displayName': getText(el, 'displayName', POCONS),
+        'poco:preferredUsername': getText(el, 'preferredUsername', POCONS),
+        objectType,
+    };
+}
+
+function urlToType(url) {
+    console.warn(url);
+    return as2tables.byURI[url] ?  as2tables.byURI[url].name : null;
+    // TODO: handle ostatus URLs.
+    // TODO: handle as 1.0 URLs.
 }
