@@ -5,6 +5,7 @@ const path = require('path');
 const promisifyLevelGraph = require('./promisify-levelgraph');
 const sublevel = require('level-sublevel');
 const levelPromise = require('level-promise');
+const levelgraphjsonld = require('levelgraph-jsonld');
 
 module.exports = function({config}) {
     const db = levelPromise(sublevel(levelup(path.resolve(__dirname, config.db || 'db'), { db: leveldown }, err => {
@@ -38,7 +39,7 @@ module.exports = function({config}) {
     };
 
     return {
-        graph: promisifyLevelGraph(levelgraph(db.sublevel('graph'))),
+        graph: promisifyLevelGraph(levelgraphjsonld(levelgraph(db.sublevel('graph')))),
         db,
         posts,
         postsByAuthorBase,
