@@ -6,7 +6,7 @@ const ltx = require('ltx');
 const webfinger = require('../bits/webfinger');
 const fetch = require('make-fetch-happen');
 const dataurl = require('parse-data-url');
-const { atom2as2 } = require('../bits/as2');
+const atom2as2 = require('activitystreams-xl').xml.parse;
 
 const ATOMNS = 'http://www.w3.org/2005/Atom';
 
