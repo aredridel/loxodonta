@@ -7,6 +7,7 @@ const xrdSchema = new XMLSchema(xrd.xrd);
 
 module.exports = function ({server, db}) {
     server.get('/.well-known/webfinger', promiseHandler((req, res) => {
+        if (!req.query.resource) throw new Error("Bad input: supply resource")
         const resource = url.parse(req.query.resource);
 
         const user = db.accounts.get(resource.auth)
