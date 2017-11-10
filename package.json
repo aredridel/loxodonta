@@ -17,7 +17,7 @@
     "tap": "^10.3.1"
   },
   "dependencies": {
-    "activitystreams-xl": "^1.0.2",
+    "activitystreams-xl": "^1.0.3",
     "body-parser": "^1.17.1",
     "es6-promisify": "^5.0.0",
     "es6-promisify-all": "^0.1.0",
