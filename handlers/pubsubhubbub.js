@@ -9,7 +9,7 @@ const collect = require('stream-collector-p');
 
 module.exports = function ({server, db}) {
 
-    server.post('/hub', bodyParser.urlencoded(), promiseHandler((req) => {
+    server.post('/hub', bodyParser.urlencoded({extended: true}), promiseHandler((req) => {
         const mode = req.body['hub.mode'];
         const reply = mode == 'publish' ? publish(req)
             : mode == 'subscribe' || mode == 'unsubscribe' ? subscribe(req)
