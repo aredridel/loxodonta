@@ -1,6 +1,5 @@
-const leveldown = require('leveldown');
+const level = require('level');
 const levelgraph = require('levelgraph');
-const levelup = require('levelup');
 const path = require('path');
 const promisifyLevelGraph = require('./promisify-levelgraph');
 const sublevel = require('level-sublevel');
@@ -8,7 +7,7 @@ const levelPromise = require('level-promise');
 const levelgraphjsonld = require('levelgraph-jsonld');
 
 module.exports = function({config}) {
-    const db = levelPromise(sublevel(levelup(path.resolve(__dirname, config.db || 'db'), { db: leveldown }, err => {
+    const db = levelPromise(sublevel(level(path.resolve(__dirname, config.db || 'db'), err => {
         if (err) {
             console.warn(`Database error: ${err.stack || err}`);
             process.exit(1);
@@ -50,4 +49,6 @@ module.exports = function({config}) {
         pubsubhubbubsubs,
         accounts
     }
+
+    process.on('SIGNUSR2', () => db.close())
 }

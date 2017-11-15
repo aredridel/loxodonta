@@ -6,14 +6,15 @@
     "mastodon",
     "gnu social"
   ],
-  "main": "index.js",
   "scripts": {
     "test": "tap test/*",
-    "start": "node server.js"
+    "start": "micro -p ${PORT:=3000}",
+    "dev": "micro-dev -p ${PORT:=3000} --ignore 'db/**'"
   },
   "author": "Aria Stewart <aredridel@dinhe.net>",
   "license": "ISC",
   "devDependencies": {
+    "micro-dev": "^1.4.0",
     "tap": "^10.3.1"
   },
   "dependencies": {
@@ -21,16 +22,15 @@
     "body-parser": "^1.17.1",
     "es6-promisify": "^5.0.0",
     "es6-promisify-all": "^0.1.0",
-    "express": "^4.15.2",
     "flakeid": "^0.1.0",
+    "fs-router": "^0.4.0",
     "if-p": "^1.0.1",
     "internet-timestamp": "0.0.1",
+    "level": "^2.0.1",
     "level-promise": "^2.1.1",
     "level-sublevel": "^6.6.1",
-    "leveldown": "^1.7.0-0",
     "levelgraph": "^2.0.1",
     "levelgraph-jsonld": "^1.0.3",
-    "levelup": "^1.3.5",
     "ltx": "^2.7.1",
     "magic-signatures": "^1.0.4",
     "make-fetch-happen": "^2.4.1",
