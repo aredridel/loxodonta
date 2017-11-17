@@ -35,6 +35,7 @@
     "magic-signatures": "^1.0.4",
     "make-fetch-happen": "^2.4.1",
     "map-p": "^1.0.1",
+    "micro-query": "^0.2.0",
     "mime-match": "^1.0.2",
     "parse-data-url": "^0.1.4",
     "replify": "^1.2.0",

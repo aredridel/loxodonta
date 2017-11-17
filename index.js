@@ -27,7 +27,6 @@ const ctx = { server, config, db, app };
 
 replify({ name: 'loxodonta', path: '/tmp/repl' }, app, { server, config, db });
 
-require('./handlers/host-meta')(ctx);
 require('./handlers/webfinger')(ctx);
 require('./handlers/atom')(ctx);
 require('./handlers/salmon')(ctx);
