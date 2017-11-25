@@ -1,3 +1,4 @@
+require('dotenv').config()
 const replify = require('replify');
 
 const config = require('./config');
@@ -15,19 +16,9 @@ module.exports = async function(req, res) {
 
 return
 
-const server = express();
-
-server.use((req, res, next) => {
-	console.log(req.method, req.originalUrl);
-	next();
-})
-
 const app = new App({ server, config, db });
 const ctx = { server, config, db, app };
 
-replify({ name: 'loxodonta', path: '/tmp/repl' }, app, { server, config, db });
-
-require('./handlers/webfinger')(ctx);
 require('./handlers/atom')(ctx);
 require('./handlers/salmon')(ctx);
 require('./handlers/pubsubhubbub')(ctx);

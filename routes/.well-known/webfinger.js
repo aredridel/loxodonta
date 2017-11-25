@@ -1,17 +1,19 @@
 const url = require('url');
 const xrd = require('../../xrd-schema');
 const XMLSchema = require('xml-schema');
-const db = require('../../db')();
+const dbP = require('../../db')();
 
 const xrdSchema = new XMLSchema(xrd.xrd);
 const query = require('micro-query');
 
 module.exports = async (req, res) => {
+    const db = await dbP;
     const q = query(req)
         if (!q.resource) throw new Error("Bad input: supply resource")
         const resource = url.parse(q.resource);
 
-        const user = await db.accounts.get(resource.auth)
+        const user = await db.search({subject: resource.auth, predicate: db.v('p'), object: db.v('o') })
+        console.warn(user)
 
         res.setHeader('Content-Type', 'application/xrd+xml; charset=UTF-8');
 

@@ -1,53 +1,52 @@
-const level = require('level');
-const levelgraph = require('levelgraph');
-const path = require('path');
-const promisifyLevelGraph = require('./promisify-levelgraph');
-const sublevel = require('level-sublevel');
-const levelPromise = require('level-promise');
-const levelgraphjsonld = require('levelgraph-jsonld');
+const path = require('path')
+const util = require('util')
+
+const readFile = util.promisify(require('fs').readFile)
+
+const { connect, createServer } = require('net')
+const listen = util.promisify(require('unix-listen'))
+
+const level = require('level')
+const levelgraph = require('levelgraph')
+const levelgraphjsonld = require('levelgraph-jsonld')
+const levelPromise = require('level-promise')
 
 module.exports = function() {
-    return {
-        graph,
-        db,
-        posts,
-        postsByAuthorBase,
-        postsByAuthor,
-        timelinesBase,
-        timelines,
-        pubsubhubbubsubsBase,
-        pubsubhubbubsubs,
-        accounts
-    }
+    return dbP
 }
-const db = levelPromise(sublevel(level(path.resolve(__dirname, 'db'), err => {
-    if (err) {
-        console.warn(`Database error: ${err.stack || err}`);
-        process.exit(1);
-    }
-})));
 
-const accounts = levelPromise(db.sublevel('accounts', { valueEncoding: 'json' }))
-const posts = levelPromise(db.sublevel('posts', { valueEncoding: 'json' }));
-const postsByAuthorBase = levelPromise(db.sublevel('postsByAuthor', { valueEncoding: 'json' }));
-const postsByAuthor = {
-    forUser(user) {
-        return levelPromise(postsByAuthorBase.sublevel(user, { valueEncoding: 'json' }));
-    }
-};
-const timelinesBase = levelPromise(db.sublevel('timelines', { valueEncoding: 'json' }));
-const timelines = {
-    forUser(user) {
-        return levelPromise(timelinesBase.sublevel(user, { valueEncoding: 'json' }))
-    }
-};
+async function open(dir) {
+    const db = await new Promise((y, n) => {
+        const db = level(dir, {}, err => {
+            if (err) {
+                n(err)
+            } else {
+                y(db)
+            }
+        })
 
-const pubsubhubbubsubsBase = db.sublevel('pubsubhubbubhsubs', {valueEncoding: 'json'});
+    }).then(levelgraph)
 
-const pubsubhubbubsubs = {
-    forTopic(topic) {
-        return levelPromise(pubsubhubbubsubsBase.sublevel(topic, {valueEncoding: 'json'}));
+    return db
+}
+
+function addManifest(db) {
+    db.methods = {
+        search: { type: 'async' },
+        searchStream: { type: 'readable' },
+        jsonld: {
+            type: 'object',
+            methods: {
+                search: { type: 'async' },
+                searchStream: { type: 'readable' }
+            }
+        }
     }
-};
 
-const graph = promisifyLevelGraph(levelgraphjsonld(levelgraph(db.sublevel('graph'))));
+    return db
+}
+
+const dbP = open(process.env.DATABASE_DIR || path.resolve(__dirname, 'db')).then(levelgraphjsonld).then(addManifest).then(levelPromise).catch(err => {
+    console.warn(`Database error: ${err.stack || err}`)
+    process.exit(1)
+})

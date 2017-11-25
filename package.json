@@ -20,6 +20,7 @@
   "dependencies": {
     "activitystreams-xl": "^1.0.3",
     "body-parser": "^1.17.1",
+    "dotenv": "^4.0.0",
     "es6-promisify": "^5.0.0",
     "es6-promisify-all": "^0.1.0",
     "flakeid": "^0.1.0",
@@ -28,7 +29,6 @@
     "internet-timestamp": "0.0.1",
     "level": "^2.0.1",
     "level-promise": "^2.1.1",
-    "level-sublevel": "^6.6.1",
     "levelgraph": "^2.0.1",
     "levelgraph-jsonld": "^1.0.3",
     "ltx": "^2.7.1",
@@ -40,6 +40,7 @@
     "parse-data-url": "^0.1.4",
     "replify": "^1.2.0",
     "stream-collector-p": "^1.0.1",
+    "unix-listen": "^0.1.1",
     "xml-schema": "^2.2.0"
   },
   "eslintConfig": {
