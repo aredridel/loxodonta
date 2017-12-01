@@ -37,8 +37,8 @@ function addManifest(db) {
         jsonld: {
             type: 'object',
             methods: {
-                search: { type: 'async' },
-                searchStream: { type: 'readable' }
+                get: { type: 'async' },
+                put: { type: 'async' }
             }
         }
     }
