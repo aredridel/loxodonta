@@ -12,8 +12,12 @@ module.exports = async (req, res) => {
         if (!q.resource) throw new Error("Bad input: supply resource")
         const resource = url.parse(q.resource);
 
-        const user = await db.search({subject: resource.auth, predicate: db.v('p'), object: db.v('o') })
+        const user = await db.jsonld.get(q.resource, {})
         console.warn(user)
+
+        if (!user) {
+            throw Object.assign(new Error("user not found"), {statusCode: 404})
+        }
 
         res.setHeader('Content-Type', 'application/xrd+xml; charset=UTF-8');
 
