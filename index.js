@@ -1,5 +1,7 @@
 require('dotenv').config()
-const replify = require('replify');
+const burpl = require('burpl');
+const { promisify } = require('util')
+const listen = promisify(require('unix-listen'))
 
 const config = require('./config');
 const db = require('./db')({config});
@@ -13,6 +15,12 @@ module.exports = async function(req, res) {
   if (matched) return await matched(req, res)
   send(res, 404, { error: 'Not found' })
 }
+
+const repl = burpl({
+  die: () => process.exit(0)
+})
+
+listen(repl, process.env.ADMINSOCKET || 'admin.sock')
 
 return
 
