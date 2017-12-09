@@ -33,7 +33,7 @@
     "levelgraph": "^2.0.1",
     "levelgraph-jsonld": "^1.0.3",
     "ltx": "^2.7.1",
-    "magic-signatures": "^1.0.4",
+    "magic-signatures": "^2.0.0",
     "make-fetch-happen": "^2.4.1",
     "map-p": "^1.0.1",
     "micro-query": "^0.2.0",
