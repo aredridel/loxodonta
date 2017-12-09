@@ -18,7 +18,7 @@
     "tap": "^11.0.0"
   },
   "dependencies": {
-    "activitystreams-xl": "^1.0.3",
+    "activitystreams-xl": "^2.0.1",
     "body-parser": "^1.17.1",
     "burpl": "^1.4.1",
     "dotenv": "^4.0.0",
