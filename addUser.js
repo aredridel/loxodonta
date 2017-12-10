@@ -1,16 +1,23 @@
 const dbP = require('./db')()
+const magicSig = require('magic-signatures')
+const url = require('url')
+const scrypt = require('scrypt')
+const context = require('./context')
 
 module.exports = async (user, host, password) => {
   const base = `https://${host}/@${user}/`
 
   const db = await dbP
 
+  const key = await magicSig.generate(2048)
+
   await db.jsonld.put({
-    "@context": "https://www.w3.org/ns/activitystreams",
+    "@context": context,
     "type": "Person",
     "id": base,
     "preferredUsername": user,
     "inbox": url.resolve(base, 'inbox/'),
+    "public_key": key.public_key,
     "outbox": url.resolve(base, 'outbox/'),
     "followers": url.resolve(base, 'followers/'),
     "following": url.resolve(base, 'following/'),
@@ -21,6 +28,7 @@ module.exports = async (user, host, password) => {
   await db.jsonld.put({
     "@id": `acct:${user}@${host}`,
     "@type": "https://github.com/aredridel/loxodonta/Account",
+    "https://github.comm/aredridel/loxodonta/private_key": key.private_key,
     "https://github.com/aredridel/loxodonta/passwordScrypt": await scrypt.kdf(password, await scrypt.params(0.2)),
     "https://github.com/aredridel/loxodonta/url": base
   })

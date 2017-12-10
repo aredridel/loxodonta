@@ -1,5 +1,4 @@
 const pmap = require('map-p')
-const promiseHandler = require('../../bits/promise-handler')
 const ts = require('internet-timestamp')
 const { as2feed2atom, as2entry2atom } = require('../../bits/as2')
 const config = require('../../config')
@@ -7,9 +6,8 @@ const dbP = require('../../db')()
 
 module.exports = async (req, res) => {
     const db = await dbP
-    console.warn(req.params.user)
     const user = await db.jsonld.get(`acct:${req.params.user}@${req.headers.host}`, { '@context': "https://www.w3.org/ns/activitystreams"})
-    const entryIDs = (await db.search([
+    const userEntries = await db.search([
 	{
 	    subject: db.v('id'),
 	    predicate: 'http://www.w3.org/1999/02/22-rdf-syntax-ns#type',
@@ -20,7 +18,9 @@ module.exports = async (req, res) => {
 	    predicate: 'https://www.w3.org/ns/activitystreams#Actor',
 	    object: user['https://github.com/aredridel/loxodonta/url']
 	}
-    ])).map(e => e.id)
+    ])
+
+    const entryIDs = userEntries.map(e => e.id)
 
     const entries = (await pmap(entryIDs, id => db.jsonld.get(id, { '@context': "https://www.w3.org/ns/activitystreams"}).catch(err => {
 	if (err.name != 'NotFoundError') throw err

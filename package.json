@@ -20,7 +20,7 @@
   "dependencies": {
     "activitystreams-xl": "^2.0.1",
     "body-parser": "^1.17.1",
-    "burpl": "^1.4.1",
+    "burpl": "^1.5.0",
     "dotenv": "^4.0.0",
     "es6-promisify": "^5.0.0",
     "es6-promisify-all": "^0.1.0",
@@ -47,7 +47,7 @@
   },
   "eslintConfig": {
     "parserOptions": {
-      "ecmaVersion": 6
+      "ecmaVersion": 8
     },
     "rules": {
       "valid-typeof": "error",

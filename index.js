@@ -1,14 +1,15 @@
 require('dotenv').config()
-const burpl = require('burpl');
+const burpl = require('burpl')
 const {promisify} = require('util')
 const listen = promisify(require('unix-listen'))
 const url = require('url')
+const addUser = require('./addUser')
 
-const config = require('./config');
+const config = require('./config')
 const dbP = require('./db')({
   config
-});
-const App = require('./app');
+})
+const App = require('./app')
 
 const match = require('fs-router')(__dirname + '/routes')
 const {send} = require('micro')
@@ -44,16 +45,16 @@ const app = new App({
   server,
   config,
   db
-});
+})
 const ctx = {
   server,
   config,
   db,
   app
-};
+}
 
-require('./handlers/atom')(ctx);
-require('./handlers/salmon')(ctx);
-require('./handlers/pubsubhubbub')(ctx);
+require('./handlers/atom')(ctx)
+require('./handlers/salmon')(ctx)
+require('./handlers/pubsubhubbub')(ctx)
 
-server.listen(process.env.PORT || 8014);
+server.listen(process.env.PORT || 8014)
