@@ -35,7 +35,7 @@ module.exports = async (req, res) => {
         links: [
             { rel: "http://webfinger.net/rel/profile-page", type: "text/html", href: `https://${resource.host}/@${person.preferredUsername}` },
             { rel: "http://schemas.google.com/g/2010#updates-from", type: "application/atom+xml", href: `https://${resource.host}/feeds/${person.preferredUsername}` },
-            { rel: "salmon", href: `https://${resource.host}/api/salmon/${person.preferredUsername}` },
+            { rel: "salmon", href: `https://${resource.host}/salmon/${person.preferredUsername}` },
             { rel: "magic-public-key", href: `data:application/magic-public-key,${person['https://github.comm/aredridel/loxodonta/public_key']}` },
             { rel: "http://ostatus.org/schema/1.0/subscribe", template: `https://${resource.host}/authorize_follow?acct={uri}` }
         ]

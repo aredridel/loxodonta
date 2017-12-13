@@ -36,7 +36,7 @@ function as2feed2atom(as2, config) {
         .c('link', { rel: "alternate", type: "text/html", href: `https://${config.host}/@${as2.actor.id}` }).up()
         .c('link', { rel: "self", type: "application/atom+xml", href: `https://${config.host}/users/${as2.actor.id}.atom` }).up()
         .c('link', { rel: "hub", href: config.hub }).up()
-        .c('link', { rel: "salmon", href: `https://${config.host}/api/salmon/${as2.actor.id}` }).up()
+        .c('link', { rel: "salmon", href: `https://${config.host}/salmon/${as2.actor.id}` }).up()
         .c('logo').t("https://files.mastodon.social/accounts/avatars/000/019/483/original/media.png?1483649818").up()
 
     if (config.standalone || config.standalone == null) {
