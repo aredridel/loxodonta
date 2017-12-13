@@ -86,18 +86,19 @@ function as2entry2atom(e, config) {
 
 function addAuthor(el, actor, config) {
     el.c('author')
-        .c('id').t(`https://${config.host}/users/${actor.id}`).up()
+        .c('id').t(actor.id).up()
         .c("activity:object-type").t("http://activitystrea.ms/schema/1.0/person").up()
-        .c('uri').t(`https://${config.host}/users/${actor.id}`).up()
-        .c('name').t(actor.id).up()
-        .c('email').t(`${actor.id}@${config.host}`).up()
-        .c('link', { rel: "alternate", type: "text/html", href: `https://${config.host}/@${actor.id}` }).up()
+        .c('uri').t(actor.id).up()
+        .c('name').t(actor.preferredUsername).up()
+        .c('link', { rel: "alternate", type: "text/html", href: actor.id }).up()
         .c('link', { rel: "avatar", type: "image/png", "media:width": "120",  "media:height": "120", "href": "https://files.mastodon.social/accounts/avatars/000/019/483/original/media.png?1483649818" }).up()
         .c('link', { rel: "header", type: "", "media:width": "700", "media:height": "335", "href": "/headers/original/missing.png" }).up()
-        .c("poco:preferredUsername").t(actor.id).up()
+        .c("poco:preferredUsername").t(actor.preferredUsername).up()
         .c("poco:displayName").t("WIP2").up()
         .c("mastodon:scope").t("public").up()
     .up()
+
+    if (actor.email) el.c('email').t(actor.id)
 }
 
 function validate(config) {
