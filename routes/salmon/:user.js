@@ -1,7 +1,6 @@
 const { text } = require('micro')
 const magicSig = require('magic-signatures')
 const dbP = require('../../db')()
-const config = require('../../config')
 const context = require('../../context')
 const ltx = require('ltx')
 const fetch = require('make-fetch-happen');
