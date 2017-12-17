@@ -29,6 +29,9 @@ module.exports = async (req, res) => {
         const as2event = await atom2as2(verified.data.toString('utf-8'))
         console.warn('verified', as2event)
 
+	if (as2event.type != 'Undo') {
+	    await db.jsonld.put(as2event)
+	}
         // return app.dispatchSalmon(as2event)
     } else {
         throw new Error(`Unknown type ${ms.data_type}`)
