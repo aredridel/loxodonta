@@ -31,6 +31,8 @@ module.exports = async (req, res) => {
 	if (as2event.type != 'Undo') {
 	    await db.jsonld.put(as2event)
 	}
+
+	return ""
         // return app.dispatchSalmon(as2event)
     } else {
         throw new Error(`Unknown type ${ms.data_type}`)
