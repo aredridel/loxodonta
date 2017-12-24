@@ -17,7 +17,7 @@ module.exports = async (user, host, password) => {
     "id": base,
     "preferredUsername": user,
     "inbox": url.resolve(base, 'inbox/'),
-    "public_key": key.public_key,
+    "publicKey": key.public_key,
     "outbox": url.resolve(base, 'outbox/'),
     "followers": url.resolve(base, 'followers/'),
     "following": url.resolve(base, 'following/'),
@@ -26,9 +26,10 @@ module.exports = async (user, host, password) => {
 
 
   await db.jsonld.put({
+    "@context": context,
     "@id": `acct:${user}@${host}`,
     "@type": "https://github.com/aredridel/loxodonta/Account",
-    "https://github.comm/aredridel/loxodonta/private_key": key.private_key,
+    "privateKey": key.private_key,
     "https://github.com/aredridel/loxodonta/passwordScrypt": await scrypt.kdf(password, await scrypt.params(0.2)),
     "https://github.com/aredridel/loxodonta/url": base
   })
