@@ -19,8 +19,9 @@
   },
   "dependencies": {
     "activitystreams-xl": "^2.0.1",
+    "as-table": "^1.0.31",
     "body-parser": "^1.17.1",
-    "burpl": "^1.5.1",
+    "burpl": "^2.0.1",
     "dotenv": "^4.0.0",
     "es6-promisify": "^5.0.0",
     "es6-promisify-all": "^0.1.0",
