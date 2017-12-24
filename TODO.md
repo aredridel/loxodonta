@@ -1,1 +1,3 @@
-- create public key in accounts
+- track activity in a list
+- ability to add new posts
+- track posts in a list
