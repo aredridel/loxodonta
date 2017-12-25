@@ -7,15 +7,16 @@
     "gnu social"
   ],
   "scripts": {
-    "test": "tap test/*",
+    "test": "tap *.test.js",
     "start": "micro -p ${PORT:=3000}",
     "dev": "micro-dev -p ${PORT:=3000} --ignore 'db/.*'"
   },
   "author": "Aria Stewart <aredridel@dinhe.net>",
   "license": "ISC",
   "devDependencies": {
-    "micro-dev": "^2.1.0",
-    "tap": "^11.0.0"
+    "estap": "^1.2.0",
+    "tap": "^11.0.1",
+    "micro-dev": "^2.1.0"
   },
   "dependencies": {
     "activitystreams-xl": "^2.0.1",
