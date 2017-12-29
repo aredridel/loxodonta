@@ -3,9 +3,9 @@ const test = tap()
 
 const typedId = require('./typedId')
 
-test(t => {
-  const id = typedId.generate('test')
-  const id2 = typedId.generate('test')
+test(async t => {
+  const id = await typedId.generate('test')
+  const id2 = await typedId.generate('test')
 
   t.true(/^test-/.test(id), 'id starts with type')
   t.true(/^test-/.test(id2), 'id2 starts with type')

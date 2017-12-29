@@ -1,8 +1,9 @@
-const crypto = require('crypto')
+const { promisify } = require('util')
+const uuid = promisify(require('uuid-1345').v1)
 
 module.exports = {
-  generate: function (type) {
-    const b = crypto.randomBytes(16)
+  generate: async function (type) {
+    const b = await uuid({ encoding: 'binary' })
     const id = [0, 1, 2, 3].map(p => b.readUInt32LE(p << 2).toString(36)).join('').toUpperCase()
     return `${type}-${id}`
   },
