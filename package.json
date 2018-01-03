@@ -15,8 +15,8 @@
   "license": "ISC",
   "devDependencies": {
     "estap": "^1.2.0",
-    "tap": "^11.0.1",
-    "micro-dev": "^2.1.0"
+    "micro-dev": "^2.1.1",
+    "tap": "^11.0.1"
   },
   "dependencies": {
     "activitystreams-xl": "^2.0.1",
@@ -30,7 +30,7 @@
     "fs-router": "^0.4.0",
     "if-p": "^1.0.1",
     "internet-timestamp": "0.0.1",
-    "level": "^2.1.0",
+    "level": "^2.1.1",
     "level-promise": "^2.1.1",
     "levelgraph": "^2.0.1",
     "levelgraph-jsonld": "^1.0.3",
