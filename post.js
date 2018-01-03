@@ -19,10 +19,10 @@ module.exports = async function (acct, content, summary) {
     return post.id
 }
 
-function urlFor(acct, type) {
+async function urlFor(acct, type) {
     if (type != 'post') throw new Error(`Unsupported type "${type}"`)
 
     const { user, host } = parseAcct(acct)
 
-    return `//${host}/@${user}/${typedId.generate('post')}`
+    return `//${host}/@${user}/${await typedId.generate('post')}`
 }

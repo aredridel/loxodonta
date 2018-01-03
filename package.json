@@ -43,6 +43,7 @@
     "parse-data-url": "^0.1.4",
     "replify": "^1.2.0",
     "scrypt": "^6.0.3",
+    "selfurl": "^1.0.1",
     "sparqljs": "^2.0.0",
     "stream-collector-p": "^1.0.1",
     "unix-listen": "^0.1.1",
