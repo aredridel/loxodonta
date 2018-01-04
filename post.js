@@ -24,5 +24,5 @@ async function urlFor(acct, type) {
 
     const { user, host } = parseAcct(acct)
 
-    return `//${host}/@${user}/${await typedId.generate('post')}`
+    return `https://${host}/@${user}/${await typedId.generate('post')}`
 }
