@@ -1,0 +1,37 @@
+{
+  "@context": [
+    "https://www.w3.org/ns/activitystreams",
+    "https://w3id.org/security/v1",
+    {
+      "manuallyApprovesFollowers": "as:manuallyApprovesFollowers",
+      "sensitive": "as:sensitive",
+      "movedTo": "as:movedTo",
+      "Hashtag": "as:Hashtag",
+      "ostatus": "http://ostatus.org#",
+      "atomUri": "ostatus:atomUri",
+      "inReplyToAtomUri": "ostatus:inReplyToAtomUri",
+      "conversation": "ostatus:conversation",
+      "toot": "http://joinmastodon.org/ns#",
+      "Emoji": "toot:Emoji"
+    }
+  ],
+  "id": "https://mizar.nbtsc.org/users/aredridel",
+  "type": "Person",
+  "following": "https://mizar.nbtsc.org/users/aredridel/following",
+  "followers": "https://mizar.nbtsc.org/users/aredridel/followers",
+  "inbox": "https://mizar.nbtsc.org/users/aredridel/inbox",
+  "outbox": "https://mizar.nbtsc.org/users/aredridel/outbox",
+  "preferredUsername": "aredridel",
+  "name": "",
+  "summary": "<p></p>",
+  "url": "https://mizar.nbtsc.org/@aredridel",
+  "manuallyApprovesFollowers": false,
+  "publicKey": {
+    "id": "https://mizar.nbtsc.org/users/aredridel#main-key",
+    "owner": "https://mizar.nbtsc.org/users/aredridel",
+    "publicKeyPem": "-----BEGIN PUBLIC KEY-----\nMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA2FgJVVHfcb9nhaBehzzH\nypWbbFvneiWULlOGmJ+F1Et+J7a+OAva4AWGtenPPqMYDxbL4eY4HTprSof4PdQU\nXgVnLv4DVzj1l/oV7Ux5TCy3Ky99pHm5kOYSjjmxhhzyR+aUIhUiITPKi2euOVqn\nQ37zlAvgmM8LIqRx+HOnXXWgaC/F7r7W8A9W6rGqwWTTQWeylhmXqMw8xaoC9ryq\nxyFcuRHYO/R4KQaQSU7Aa1NndggDwW7zNHH4xLuR26F2P+ZJKVQ0dmeCdxoKEr1/\nXNNAx+hxWjp7g7DJc1kb8VVthzLGoFC/h6dU/V+pmNAj7GgdS7+dOJUTw4IyP2D9\n/wIDAQAB\n-----END PUBLIC KEY-----\n"
+  },
+  "endpoints": {
+    "sharedInbox": "https://mizar.nbtsc.org/inbox"
+  }
+}

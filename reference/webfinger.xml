@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<XRD xmlns="http://docs.oasis-open.org/ns/xri/xrd-1.0">
+  <Subject>acct:aredridel@mizar.nbtsc.org</Subject>
+  <Alias>https://mizar.nbtsc.org/@aredridel</Alias>
+  <Alias>https://mizar.nbtsc.org/users/aredridel</Alias>
+  <Link rel="http://webfinger.net/rel/profile-page" type="text/html" href="https://mizar.nbtsc.org/@aredridel"/>
+  <Link rel="http://schemas.google.com/g/2010#updates-from" type="application/atom+xml" href="https://mizar.nbtsc.org/users/aredridel.atom"/>
+  <Link rel="self" type="application/activity+json" href="https://mizar.nbtsc.org/users/aredridel"/>
+  <Link rel="salmon" href="https://mizar.nbtsc.org/api/salmon/1"/>
+  <Link rel="magic-public-key" href="data:application/magic-public-key,RSA.2FgJVVHfcb9nhaBehzzHypWbbFvneiWULlOGmJ-F1Et-J7a-OAva4AWGtenPPqMYDxbL4eY4HTprSof4PdQUXgVnLv4DVzj1l_oV7Ux5TCy3Ky99pHm5kOYSjjmxhhzyR-aUIhUiITPKi2euOVqnQ37zlAvgmM8LIqRx-HOnXXWgaC_F7r7W8A9W6rGqwWTTQWeylhmXqMw8xaoC9ryqxyFcuRHYO_R4KQaQSU7Aa1NndggDwW7zNHH4xLuR26F2P-ZJKVQ0dmeCdxoKEr1_XNNAx-hxWjp7g7DJc1kb8VVthzLGoFC_h6dU_V-pmNAj7GgdS7-dOJUTw4IyP2D9_w==.AQAB"/>
+  <Link rel="http://ostatus.org/schema/1.0/subscribe" template="https://mizar.nbtsc.org/authorize_follow?acct={uri}"/>
+</XRD>
