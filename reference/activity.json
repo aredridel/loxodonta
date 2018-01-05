@@ -1,0 +1,50 @@
+{
+  "@context": [
+    "https://www.w3.org/ns/activitystreams",
+    "https://w3id.org/security/v1",
+    {
+      "manuallyApprovesFollowers": "as:manuallyApprovesFollowers",
+      "sensitive": "as:sensitive",
+      "movedTo": "as:movedTo",
+      "Hashtag": "as:Hashtag",
+      "ostatus": "http://ostatus.org#",
+      "atomUri": "ostatus:atomUri",
+      "inReplyToAtomUri": "ostatus:inReplyToAtomUri",
+      "conversation": "ostatus:conversation",
+      "toot": "http://joinmastodon.org/ns#",
+      "Emoji": "toot:Emoji"
+    }
+  ],
+  "id": "https://mizar.nbtsc.org/users/aredridel/statuses/99225837828696223/activity",
+  "type": "Create",
+  "actor": "https://mizar.nbtsc.org/users/aredridel",
+  "published": "2017-12-23T21:55:29Z",
+  "to": [
+    "https://www.w3.org/ns/activitystreams#Public"
+  ],
+  "cc": [
+    "https://mizar.nbtsc.org/users/aredridel/followers"
+  ],
+  "object": {
+    "id": "https://mizar.nbtsc.org/users/aredridel/statuses/99225837828696223",
+    "type": "Note",
+    "summary": null,
+    "content": "<p>TEST ING</p>",
+    "inReplyTo": null,
+    "published": "2017-12-23T21:55:29Z",
+    "url": "https://mizar.nbtsc.org/@aredridel/99225837828696223",
+    "attributedTo": "https://mizar.nbtsc.org/users/aredridel",
+    "to": [
+      "https://www.w3.org/ns/activitystreams#Public"
+    ],
+    "cc": [
+      "https://mizar.nbtsc.org/users/aredridel/followers"
+    ],
+    "sensitive": false,
+    "atomUri": "https://mizar.nbtsc.org/users/aredridel/statuses/99225837828696223",
+    "inReplyToAtomUri": null,
+    "conversation": "tag:mizar.nbtsc.org,2017-12-23:objectId=1:objectType=Conversation",
+    "attachment": [],
+    "tag": []
+  }
+}
