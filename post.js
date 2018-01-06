@@ -1,46 +1,45 @@
 const dbP = require('./db')()
 const context = require('./context')
-const parseAcct = require('./parseAcct')
-const typedId = require('./typedId')
 const tag = require('tag-uri')
 const config = require('./config')
 const iso = require('iso8601-convert')
+const urlFor = require('./urlFor')
 
-module.exports = async function (acct, content, summary) {
+module.exports = async function (acct, content, summary, inReplyTo) {
     const db = await dbP
     const id = await urlFor(acct, 'post')
     const date = iso.fromDate(Date.now())
+    const inRe = inReplyTo ? await db.jsonld.get(inReplyTo) : null
 
     const post = {
         "@context": context,
         "type": "Create",
         id: id + '/activity',
-        "actor": "https://mizar.nbtsc.org/users/aredridel",
+        "actor": urlFor(acct, 'user'),
         "published": date,
         "to": [
             "https://www.w3.org/ns/activitystreams#Public"
         ],
         "cc": [
-            "https://mizar.nbtsc.org/users/aredridel/followers"
+            urlFor(acct, 'followers')
         ],
         "object": {
             summary,
             content,
-            "inReplyTo": null,
+            inReplyTo,
             id,
             "type": "Note",
             "published": date,
             "url": id,
-            "attributedTo": "https://mizar.nbtsc.org/users/aredridel",
+            "attributedTo": urlFor(acct, 'user'),
             "to": [
                 "https://www.w3.org/ns/activitystreams#Public"
             ],
             "cc": [
-                "https://mizar.nbtsc.org/users/aredridel/followers"
+                urlFor(acct, 'followers')
             ],
             "sensitive": false,
-            "inReplyToAtomUri": null,
-            "conversation": tag(`https://${config.HOST}/${id}/conversation`, new Date),
+            "conversation": inRe ? inRe.conversation : tag(`https://${config.HOST}/${id}/conversation`, new Date),
             "attachment": [],
             "tag": []
         }
@@ -49,12 +48,4 @@ module.exports = async function (acct, content, summary) {
     await db.jsonld.put(post, context)
 
     return post.id
-}
-
-async function urlFor(acct, type) {
-    if (type != 'post') throw new Error(`Unsupported type "${type}"`)
-
-    const { user, host } = parseAcct(acct)
-
-    return `https://${host}/@${user}/${await typedId.generate('post')}`
 }
