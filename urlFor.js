@@ -4,12 +4,12 @@ const typedId = require('./typedId')
 const types = new Set(['post', 'user', 'followers'])
 
 module.exports = async function urlFor(acct, type) {
-    if (!types.get(type)) throw new Error(`Unsupported type "${type}"`)
+    if (!types.has(type)) throw new Error(`Unsupported type "${type}"`)
 
     const { user, host } = parseAcct(acct)
 
     if (type == 'user') {
-        return `https://${host}/@${user}`
+        return `https://${host}/@${user}/`
     } else if (type == 'followers') {
         return `https://${host}/@${user}/followers`
     } else {
