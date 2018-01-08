@@ -16,7 +16,7 @@ const dispatch = require('micro-route/dispatch')
 
 module.exports = dispatch()
   .dispatch('/feeds/:user', ['GET'], require('./feed.js'))
-  .dispatch('/salmon/:user', ['GET', 'POST'], require('./routes/salmon/:user.js'))
+  .dispatch('/salmon/:user', ['GET', 'POST'], require('./salmon.js'))
   .dispatch('/.well-known/webfinger', ['GET'], require('./webfinger.js'))
   .dispatch('/.well-known/host-meta', ['GET'], require('./host-meta.js'))
   .otherwise(require('./objectFromDb'))
