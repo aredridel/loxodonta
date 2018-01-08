@@ -2,7 +2,6 @@ const xrd = require('./xrd-schema')
 const XMLSchema = require('xml-schema')
 const xrdSchema = new XMLSchema(xrd.xrd)
 const config = require('./config')
-const { send } = require('micro')
 
 module.exports = async (req, res) => {
     res.setHeader('Content-Type', 'application/xrd+xml; charset=UTF-8')
