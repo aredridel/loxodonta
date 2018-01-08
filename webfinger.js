@@ -1,7 +1,6 @@
 const url = require('url')
 const dbP = require('./db')()
 const urlFor = require('./urlFor')
-const parseAcct = require('./parseAcct')
 const context = require('./context')
 
 const query = require('micro-query')
