@@ -13,7 +13,6 @@ module.exports = async (req, res) => {
     const resource = url.parse(q.resource)
 
     const user = await db.jsonld.get(q.resource, {'@context': "https://www.w3.org/ns/activitystreams" })
-    console.warn(q.resource, user)
 
     if (!user) {
         throw Object.assign(new Error("user not found"), {statusCode: 404})
