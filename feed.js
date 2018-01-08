@@ -1,8 +1,8 @@
 const pmap = require('map-p')
 const ts = require('internet-timestamp')
-const { as2feed2atom, as2entry2atom } = require('../../bits/as2')
-const config = require('../../config')
-const dbP = require('../../db')()
+const { as2feed2atom, as2entry2atom } = require('./bits/as2')
+const config = require('./config')
+const dbP = require('./db')()
 
 module.exports = async (req, res) => {
     const db = await dbP
