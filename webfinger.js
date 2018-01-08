@@ -11,7 +11,7 @@ module.exports = async (req, res) => {
     if (!q.resource) throw new Error("Bad input: supply resource")
     const resource = url.parse(q.resource)
 
-    const user = await db.jsonld.get(q.resource, {'@context': "https://www.w3.org/ns/activitystreams" })
+    const user = await db.jsonld.get(q.resource, context)
 
     if (!user) {
         throw Object.assign(new Error("user not found"), {statusCode: 404})
