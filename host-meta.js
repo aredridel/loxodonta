@@ -1,7 +1,7 @@
-const xrd = require('../../xrd-schema')
+const xrd = require('./xrd-schema')
 const XMLSchema = require('xml-schema')
 const xrdSchema = new XMLSchema(xrd.xrd)
-const config = require('../../config')
+const config = require('./config')
 const { send } = require('micro')
 
 module.exports = async (req, res) => {
