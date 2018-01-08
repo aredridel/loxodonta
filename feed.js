@@ -1,6 +1,6 @@
 const pmap = require('map-p')
 const ts = require('internet-timestamp')
-const { as2feed2atom, as2entry2atom } = require('./bits/as2')
+const { as2feed2atom } = require('./bits/as2')
 const config = require('./config')
 const dbP = require('./db')()
 
