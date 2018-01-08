@@ -12,16 +12,14 @@ const dbP = require('./db')({
   config
 })
 
-const match = require('fs-router')(__dirname + '/routes')
-const {send} = require('micro')
+const dispatch = require('micro-route/dispatch')
 
-module.exports = async function(req, res) {
-  let matched = match(req)
-  if (matched) return await matched(req, res)
-  send(res, 404, {
-    error: 'Not found'
-  })
-}
+module.exports = dispatch()
+  .dispatch('/feeds/:user', ['GET'], require('./routes/feeds/:user.js'))
+  .dispatch('/salmon/:user', ['GET', 'POST'], require('./routes/salmon/:user.js'))
+  .dispatch('/.well-known/webfinger', ['GET'], require('./routes/.well-known/webfinger.js'))
+  .dispatch('/.well-known/host-meta', ['GET'], require('./routes/.well-known/host-meta.js'))
+  .otherwise(require('./objectFromDb'))
 
 const repl = burpl({
   "die": () => process.exit(0),
