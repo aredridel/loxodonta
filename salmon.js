@@ -1,7 +1,6 @@
 const { text } = require('micro')
 const magicSig = require('magic-signatures')
 const dbP = require('./db')()
-const context = require('./context')
 const ltx = require('ltx')
 const fetch = require('make-fetch-happen');
 const url = require('url');
@@ -9,7 +8,7 @@ const webfinger = require('./bits/webfinger');
 const dataurl = require('parse-data-url');
 const atom2as2 = require('activitystreams-xl').xml.parse;
 
-module.exports = async (req, res) => {
+module.exports = async (req) => {
     const db = await dbP
     const ms = magicSig.fromXML(await text(req))
     if (ms.data_type == 'application/atom+xml') {
