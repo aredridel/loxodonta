@@ -1,10 +1,4 @@
 const path = require('path')
-const util = require('util')
-
-const readFile = util.promisify(require('fs').readFile)
-
-const { connect, createServer } = require('net')
-const listen = util.promisify(require('unix-listen'))
 
 const level = require('level')
 const levelgraph = require('levelgraph')
