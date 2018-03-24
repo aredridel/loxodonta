@@ -24,7 +24,7 @@
     "body-parser": "^1.17.1",
     "burpl": "^2.0.1",
     "dotenv": "^4.0.0",
-    "es6-promisify": "^5.0.0",
+    "es6-promisify": "^6.0.0",
     "es6-promisify-all": "^0.1.0",
     "flakeid": "^0.1.0",
     "if-p": "^1.0.1",
