@@ -41,7 +41,7 @@
     "micro-query": "^0.2.0",
     "micro-route": "^2.5.0",
     "mime-match": "^1.0.2",
-    "parse-data-url": "^0.1.6",
+    "parse-data-url": "^0.2.0",
     "replify": "^1.2.0",
     "scrypt": "^6.0.3",
     "selfurl": "^1.0.1",
