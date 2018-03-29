@@ -34,6 +34,8 @@
     "level-promise": "^2.1.1",
     "levelgraph": "^2.0.1",
     "levelgraph-jsonld": "^1.2.0",
+    "levelgraph-jsonld-manifest": "^1.0.0",
+    "levelgraph-jsonld-query": "^2.0.1",
     "ltx": "^2.7.1",
     "magic-signatures": "^2.0.0",
     "make-fetch-happen": "^3.0.0",

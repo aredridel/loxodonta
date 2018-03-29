@@ -3,6 +3,7 @@ const path = require('path')
 const level = require('level')
 const levelgraph = require('levelgraph')
 const levelgraphjsonld = require('levelgraph-jsonld')
+const manifest = require('levelgraph-jsonld-manifest')
 const levelPromise = require('level-promise')
 
 module.exports = function() {
@@ -19,28 +20,13 @@ async function open(dir) {
             }
         })
 
-    }).then(levelgraph)
+    })
 
-    return db
+
+    return levelPromise(manifest(levelgraphjsonld(levelgraph(db))))
 }
 
-function addManifest(db) {
-    db.methods = {
-        search: { type: 'async' },
-        searchStream: { type: 'readable' },
-        jsonld: {
-            type: 'object',
-            methods: {
-                get: { type: 'async' },
-                put: { type: 'async' }
-            }
-        }
-    }
-
-    return db
-}
-
-const dbP = open(process.env.DATABASE_DIR || path.resolve(__dirname, 'db')).then(levelgraphjsonld).then(addManifest).then(levelPromise).catch(err => {
+const dbP = open(process.env.DATABASE_DIR || path.resolve(__dirname, 'db')).catch(err => {
     console.warn(`Database error: ${err.stack || err}`)
     process.exit(1)
 })
