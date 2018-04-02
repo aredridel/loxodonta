@@ -3,7 +3,7 @@ const context = require('./context')
 const tag = require('tag-uri')
 const config = require('./config')
 const iso = require('iso8601-convert')
-const urlFor = require('./urlFor')
+const urlFor = require('./bits/urlFor')
 
 module.exports = async function (acct, content, summary, inReplyTo) {
     const db = await dbP

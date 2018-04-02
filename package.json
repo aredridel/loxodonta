@@ -7,7 +7,7 @@
     "gnu social"
   ],
   "scripts": {
-    "test": "tap *.test.js",
+    "test": "tap '*/*.test.js'",
     "start": "micro -p ${PORT:=3000}",
     "dev": "micro-dev -p ${PORT:=3000} --ignore 'db/.*'"
   },
