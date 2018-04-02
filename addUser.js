@@ -3,9 +3,12 @@ const magicSig = require('magic-signatures')
 const url = require('url')
 const scrypt = require('scrypt')
 const context = require('./context')
+const bole = require('bole')(__filename)
 
 module.exports = async (user, host, password) => {
   const base = `https://${host}/@${user}/`
+
+  bole({base})
 
   const db = await dbP
 

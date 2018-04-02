@@ -4,10 +4,14 @@ const tag = require('tag-uri')
 const config = require('./config')
 const iso = require('iso8601-convert')
 const urlFor = require('./bits/urlFor')
+const bole = require('bole')(__filename)
 
 module.exports = async function (acct, content, summary, inReplyTo) {
     const db = await dbP
     const id = await urlFor(acct, 'post')
+
+    bole({id})
+
     const date = iso.fromDate(Date.now())
     const inRe = inReplyTo ? await db.jsonld.get(inReplyTo) : null
 

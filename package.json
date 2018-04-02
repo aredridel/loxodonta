@@ -22,6 +22,7 @@
     "activitystreams-xl": "^2.0.1",
     "as-table": "^1.0.31",
     "body-parser": "^1.17.1",
+    "bole": "^3.0.2",
     "burpl": "^2.0.1",
     "dotenv": "^5.0.1",
     "es6-promisify": "^6.0.0",

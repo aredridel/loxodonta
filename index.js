@@ -6,6 +6,7 @@ const addUser = require('./addUser')
 const post = require('./post')
 const sparqlQuery = require('./sparqlQuery')
 const asTable = require('as-table')
+const bole = require('bole')
 
 const config = require('./config')
 const dbP = require('./db')({
@@ -37,6 +38,11 @@ const repl = burpl({
   "user NAME host HOST password PASSWORD": addUser,
   "acct ACCT post POST": post,
   "acct ACCT post POST cn NOTE": post,
+})
+
+bole.output({
+  level: 'info',
+  stream: process.stdout
 })
 
 listen(repl, process.env.ADMINSOCKET || 'admin.sock')

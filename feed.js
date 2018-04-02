@@ -3,10 +3,15 @@ const ts = require('internet-timestamp')
 const { as2feed2atom } = require('./bits/as2')
 const config = require('./config')
 const dbP = require('./db')()
+const bole = require('bole')(__filename)
 
 module.exports = async (req, res) => {
     const db = await dbP
-    const user = await db.jsonld.get(`acct:${req.params.user}@${req.headers.host}`, { '@context': "https://www.w3.org/ns/activitystreams"})
+    const url = `acct:${req.params.user}@${req.headers.host}`
+
+    bole({url})
+
+    const user = await db.jsonld.get(url, { '@context': "https://www.w3.org/ns/activitystreams"})
     const userEntries = await db.search([
 	{
 	    subject: db.v('id'),
