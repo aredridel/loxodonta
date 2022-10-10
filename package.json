@@ -31,7 +31,7 @@
     "if-p": "^1.0.1",
     "internet-timestamp": "0.0.1",
     "iso8601-convert": "^1.0.0",
-    "level": "^3.0.0",
+    "level": "^3.0.2",
     "level-promise": "^2.1.1",
     "levelgraph": "^2.0.1",
     "levelgraph-jsonld": "^1.2.0",
