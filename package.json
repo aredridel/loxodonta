@@ -39,7 +39,7 @@
     "levelgraph-jsonld-query": "^2.0.1",
     "ltx": "^2.7.1",
     "magic-signatures": "^2.0.0",
-    "make-fetch-happen": "^3.0.0",
+    "make-fetch-happen": "^10.2.1",
     "map-p": "^1.0.1",
     "micro-query": "^0.2.0",
     "micro-route": "^2.5.0",
