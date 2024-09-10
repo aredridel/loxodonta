@@ -21,7 +21,7 @@
   "dependencies": {
     "activitystreams-xl": "^2.0.1",
     "as-table": "^1.0.31",
-    "body-parser": "^1.17.1",
+    "body-parser": "^1.20.3",
     "bole": "^3.0.2",
     "burpl": "^2.0.1",
     "dotenv": "^5.0.1",
