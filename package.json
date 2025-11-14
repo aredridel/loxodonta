@@ -16,7 +16,7 @@
   "devDependencies": {
     "estap": "^1.2.0",
     "micro-dev": "^3.1.0",
-    "tap": "^16.3.0"
+    "tap": "^21.1.3"
   },
   "dependencies": {
     "activitystreams-xl": "^2.0.1",
